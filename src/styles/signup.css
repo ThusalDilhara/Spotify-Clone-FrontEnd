@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000000;
+  color: #fff;
+}
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signup-box {
+  width: 100%;
+  max-width: 400px;
+  background: #0c130e;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.spotify-logo {
+  max-width: 150px;
+  margin-bottom: 0px;
+}
+
+.text1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.text2 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  text-align: left;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  background-color: #0c130e;
+  border: 1px solid #635d5d;
+  border-radius: 4px;
+  color: #eae7e7;
+  font-size: 16px;
+}
+
+.input-group-signup {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  border: #615d5d solid;
+  border-color: #615d5d;
+  padding-right: 10px;
+  margin-right: 20px;
+  width: auto;
+  border-width: 0.5px;
+  max-width: 500px;
+  width: 100%;
+  padding-right: 20px;
+  border-radius: 2px;
+}
+.input-group-signup:focus-within {
+  border-color: #ffffff;
+}
+.signup-input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  font-size: 16px;
+  background-color: #0c130e;
+  color: #eae7e7;
+  outline: none;
+}
+.text-password-signup {
+  font-size: small;
+  font-weight: 600;
+  margin-right: 400px;
+  margin-bottom: 10px;
+}
+
+.text-password1 {
+  font-size: small;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.test-password2 {
+  font-size: smaller;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.signup-button {
+  width: 100%;
+  padding: 15px;
+  margin-left: 10px;
+  margin-top: 20px;
+  background-color: #11e067;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.signup-button:hover {
+  background-color: #6cee9a;
+  color: #000000;
+}
+
+.extra-options {
+  margin-top: 20px;
+  color: #eae7e7;
+}
+
+.extra-options a {
+  color: #fff;
+  text-decoration: underline;
+}

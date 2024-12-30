@@ -1,0 +1,29 @@
+:root {
+
+    --spotify-green: #1db954;
+    --spotify-black: #191414;
+    --spotify-header-black: #000000;
+    --spotify-white: #ffffff;
+  
+  
+    --spotify-dark-gray: #121212;
+    --spotify-light-gray: #b3b3b3;
+    --spotify-hover-gray: #282828;
+  
+   
+    --spotify-font-primary: "Roboto", sans-serif;
+   
+    
+  
+  }
+  
+  body {
+    margin: 0;
+    font-family: var(--spotify-font-primary);
+    background-color: var(--spotify-header-black);
+    color: var(--spotify-white);
+    list-style-type: none;
+  }
+  
+  
+  

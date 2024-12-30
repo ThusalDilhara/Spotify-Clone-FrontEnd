@@ -1,0 +1,92 @@
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color:var(--spotify-header-black);  
+  color: var (--spotify-white);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: var(--spotify-font-primary);
+  
+}
+
+.header_logo img {
+  height: 40px;
+}
+
+
+.header_home{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--spotify-hover-gray);
+  border-radius: 50%;
+  margin-left: 80px;
+  padding-left: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+.header_search {
+  display: flex;
+  align-items: center;
+  background-color: var(--spotify-hover-gray);
+  border-radius: 20px;
+  padding: 10px 10px;
+  flex: 1;
+  max-width: 400px;
+  margin: 0 20px;
+ 
+}
+
+.search_icon {
+  color: #b3b3b3;
+  margin-right: 10px;
+}
+
+.search_input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 16px;
+  background-color: transparent;
+  font-weight:500;
+  color: var(--spotify-white);
+  font-family: var(--spotify-font-primary);
+}
+
+.header_premium{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--spotify-white);
+  border: none;
+  color: var(--spotify-black);
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+
+}
+
+.header_profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile_icon {
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.home_icon {
+  font-size: 30px;
+  margin-right: 10px;
+  color: var(--spotify-white);
+}
+.profile_name {
+  font-size: 16px;
+  font-weight: bold;
+}
