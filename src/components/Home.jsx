@@ -85,7 +85,7 @@ const Home = () => {
               key={index}
               SongName={song.songName} 
               artistName={song.artist}
-              image={song.ImageUrl}
+              image={song.imageUrl}
             />
           ))}
 
