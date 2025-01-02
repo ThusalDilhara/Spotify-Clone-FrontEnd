@@ -1,0 +1,66 @@
+.artist {
+  position: absolute;
+  top: 70px;
+  left: 295px;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  background-color: var(--spotify-dark-gray);
+  color: var(--spotify-white);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.artist-info {
+  display: flex;
+  gap: 10px;
+  background: linear-gradient(to bottom, #1db954, #191414);
+}
+
+.artist-info img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.artist-info h2 {
+  font-size: 70px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0;
+}
+.artist-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.artist-stats h3 {
+  font-size: 20px;
+  color: #b3b3b3;
+  margin: 0;
+}
+.follow-btn {
+  background-color: transparent;
+  color: white;
+  border: rgb(255, 255, 255) 1px solid;
+  padding: 10px 20px;
+  margin-top: 15px;
+  font-size: 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100px;
+}
+
+.follow-btn:hover {
+  background-color: #1ed760;
+}
+
+.follow-btn:active {
+  transform: scale(0.98);
+}

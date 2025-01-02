@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/sideBar";
 import MusicPlayer from "./components/musicPlayer";
 import Home from "./components/Home";
+import ArtistPage from "./components/ArtistPage";
 
 function App() {
 
@@ -29,6 +30,15 @@ function App() {
               </div>
             }
           />
+           <Route path="/artist/:artistId" element ={
+             <div>
+             <Header />
+             <Sidebar />
+             <ArtistPage />
+             <MusicPlayer updateSong={(fn) => (updateSongRef.current = fn)} />
+           </div>
+           } />
+
         </Routes>
       </BrowserRouter>
     </div>
