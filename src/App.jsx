@@ -7,25 +7,34 @@ import Header from "./components/Header";
 import Sidebar from "./components/sideBar";
 import MusicPlayer from "./components/musicPlayer";
 import Home from "./components/Home";
+import { Profile } from "./components/Profile";
+import { Footer } from "./components/Footer";
 
 function App() {
-
   const updateSongRef = useRef(null);
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-        
-          <Route path="/" element={<SignupComponenet/>} />
-          <Route path="/login" element={<LoginComponent/>} />
+          <Route path="/" element={<SignupComponenet />} />
+          <Route path="/footer" element={<Footer />} />
           <Route
             path="/home"
             element={
               <div>
                 <Header />
                 <Sidebar />
-                <Home updateSong={(song) => updateSongRef.current && updateSongRef.current(song)} />
-                <MusicPlayer updateSong={(fn) => (updateSongRef.current = fn)} />
+                <Home
+                  updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }
+                />
+                <MusicPlayer
+                  updateSong={(fn) => (updateSongRef.current = fn)}
+                />
+
+                <Profile />
+                <Footer />
               </div>
             }
           />
