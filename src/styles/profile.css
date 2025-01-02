@@ -1,0 +1,93 @@
+.main-container{
+    background-color: #121212;
+    overflow-y: auto;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  padding-left: 0px;
+  width: 40%;
+  margin: auto;
+  border-radius: 10px;
+  height: 100vh;
+}
+
+h1{
+    font-size: 50px;
+}
+
+.backButton{
+    margin-left: 0;
+}
+
+.backButton img{
+    border-radius: 50%;
+    background-color: rgb(247, 242, 242);
+   
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  input,
+  select {
+    padding: 10px;
+    background-color: #000000;
+    border: 1px solid #555;
+    border-radius: 5px;
+    color: #fff;
+    outline: none;
+    
+  }
+  
+  input::placeholder {
+    color: #aaa;
+  }
+  input:focus{
+    border-color: #fff;
+    border: 1px solid;
+  }
+  
+  .button-save{
+    padding: 10px 20px;
+    background-color: #1db954;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }
+  input:-webkit-autofill {
+    background-color: #050505 !important; 
+    color: #ffffff !important; 
+    -webkit-text-fill-color: #f4f1f1 !important; 
+    -webkit-box-shadow: 0 0 0px 1000px #000000 inset !important; 
+  }
+
+
+  input:hover:-webkit-autofill {
+    background-color: #0b0b0b !important; 
+  }
+  
+  .button-save:hover {
+    background-color: #1ed760;
+  }
+  
+  .dob {
+    display: block;
+    width: 300;
+    background-color: #121212;
+
+  }
