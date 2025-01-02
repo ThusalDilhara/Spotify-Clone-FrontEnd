@@ -8,6 +8,7 @@ import Sidebar from "./components/sideBar";
 import MusicPlayer from "./components/musicPlayer";
 import Home from "./components/Home";
 import { Profile } from "./components/Profile";
+import { Footer } from "./components/Footer";
 
 function App() {
   const updateSongRef = useRef(null);
@@ -16,7 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SignupComponenet />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/footer" element={<Footer />} />
           <Route
             path="/home"
             element={
@@ -33,6 +34,7 @@ function App() {
                 />
 
                 <Profile />
+                <Footer />
               </div>
             }
           />
