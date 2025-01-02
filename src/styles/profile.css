@@ -3,7 +3,7 @@
     overflow-y: auto;
   color: #fff;
   font-family: Arial, sans-serif;
-  padding-left: 0px;
+  padding: 5px;
   width: 40%;
   margin: auto;
   border-radius: 10px;
@@ -16,12 +16,14 @@ h1{
 
 .backButton{
     margin-left: 0;
+    background-color: #121212;
+    border-color: #121212;
+    margin-top: 20px;
 }
 
 .backButton img{
     border-radius: 50%;
-    background-color: rgb(247, 242, 242);
-   
+    background-color: rgb(42, 40, 40);
 }
 
 form {
@@ -59,21 +61,51 @@ form {
     border: 1px solid;
   }
   
+  .button-container {
+    display: flex;
+    justify-content: end; 
+    gap: 10px;
+  }
+  
   .button-save{
     padding: 10px 20px;
+   margin-left: 3px;
     background-color: #1db954;
-    color: #fff;
+    color: #000000;
+    font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     font-size: 16px;
     cursor: pointer;
     text-align: center;
+    width: auto;
+    align-items: end;
   }
+  .button-delete {
+    padding: 10px 20px;
+   margin-left: 3px;
+    background-color: #f9f9f9;
+    color: #000000;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    width: auto;
+    align-items: end;
+  }
+  .button-delete:hover{
+    background-color: rgb(227, 66, 66);
+  }
+  
+ 
   input:-webkit-autofill {
     background-color: #050505 !important; 
     color: #ffffff !important; 
     -webkit-text-fill-color: #f4f1f1 !important; 
     -webkit-box-shadow: 0 0 0px 1000px #000000 inset !important; 
+
   }
 
 
@@ -83,6 +115,7 @@ form {
   
   .button-save:hover {
     background-color: #1ed760;
+    
   }
   
   .dob {

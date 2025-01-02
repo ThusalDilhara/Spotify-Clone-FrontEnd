@@ -45,13 +45,14 @@ export const Profile = () => {
               </select>
             </div>
           </div>
-          <div className="form-group">
-            <label>Country or Region</label>
-            <input type="text" placeholder="Enter your country" />
+          <div className="button-container">
+            <button className="button-delete" type="">
+              Delete Profile
+            </button>
+            <button className="button-save" type="submit">
+              Save Profile
+            </button>
           </div>
-          <button className="button-save" type="submit">
-            Save Profile
-          </button>
         </form>
       </div>
     </div>
