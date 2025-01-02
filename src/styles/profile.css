@@ -16,14 +16,16 @@ h1{
 
 .backButton{
     margin-left: 0;
-    background-color: #121212;
-    border-color: #121212;
+    background-color: #d1cfcf;
+    border-color: #d1cfcf;
     margin-top: 20px;
+    border-radius: 50%;
+    
 }
 
 .backButton img{
     border-radius: 50%;
-    background-color: rgb(42, 40, 40);
+    background-color: #d1cfcf;
 }
 
 form {
