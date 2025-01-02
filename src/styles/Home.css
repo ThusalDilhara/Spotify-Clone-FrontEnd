@@ -62,13 +62,14 @@ body {
   border-radius: 8px;
   background-color: var(--spotify-dark-gray);
   padding: 10px;
+  position: relative;
 }
 
 .card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
-  border-radius: 8px 8px 0 0;
+  border-radius: 8px;
 }
 
 .card h5 {
@@ -86,7 +87,33 @@ body {
 .card:hover {
   background-color: #2a2a2a;
   cursor: pointer;
+
 }
+.play-button {
+  display: none;
+  width: 45px;
+  height: 45px;
+  background-color: var(--spotify-green);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 50%;
+  margin-left: 140px;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  position:absolute;
+  bottom: 35px;
+}
+
+.card:hover .play-button {
+  display: flex;
+  
+}
+
+.play-icon {
+  font-size: 20px;
+}
+
 
 .space {
   margin-bottom: 80px;

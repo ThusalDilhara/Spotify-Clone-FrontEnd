@@ -51,7 +51,7 @@ const albums = [
   },
 ];
 
-const Home = () => {
+const Home = ({ updateSong }) => {
 
   const [songs, setSongs] = useState([]); 
 
@@ -85,7 +85,8 @@ const Home = () => {
               key={index}
               SongName={song.songName} 
               artistName={song.artist}
-              image={song.ImageUrl}
+              image={song.imageUrl}
+              onClick={() => updateSong(song)}
             />
           ))}
 
