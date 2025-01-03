@@ -11,6 +11,7 @@ import image5 from '../assets/image-5.jpg';
 import image6 from '../assets/image-6.jpg';
 import SongItem from './SongItem';
 import ArtistItem from './artistItem';
+import { Footer } from './Footer';
 
 
 const albums = [
@@ -113,6 +114,12 @@ const Home = ({ updateSong }) => {
      <div className='space'>
 
      </div>
+
+     <Footer/>
+     <div className='space'>
+
+     </div>
+
 
     
     </div>

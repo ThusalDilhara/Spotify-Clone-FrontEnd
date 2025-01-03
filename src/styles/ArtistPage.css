@@ -64,3 +64,29 @@
 .follow-btn:active {
   transform: scale(0.98);
 }
+
+.song-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.song-item p {
+  font-size: 18px;
+  margin: 0;
+}
+
+.play-btn {
+  background-color: #1db954;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.play-btn:hover {
+  background-color: #1ed760;
+}

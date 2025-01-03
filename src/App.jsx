@@ -7,7 +7,6 @@ import Header from "./components/Header";
 import Sidebar from "./components/sideBar";
 import MusicPlayer from "./components/musicPlayer";
 import Home from "./components/Home";
-import { Profile } from "./components/Profile";
 import { Footer } from "./components/Footer";
 import ArtistPage from "./components/ArtistPage";
 
@@ -18,6 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SignupComponenet />} />
+          <Route path="/login" element={<LoginComponent />} />
           <Route path="/footer" element={<Footer />} />
           <Route
             path="/home"
@@ -34,8 +34,7 @@ function App() {
                   updateSong={(fn) => (updateSongRef.current = fn)}
                 />
 
-                <Profile />
-                <Footer />
+                
               </div>
             }
           />
