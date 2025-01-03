@@ -11,6 +11,24 @@
   border-radius: 10px;
 }
 
+.artist::-webkit-scrollbar {
+  width: 12px;
+}
+
+.artist::-webkit-scrollbar-track {
+  background: var(--spotify-dark-gray);
+  border-radius: 6px;
+}
+
+.artist::-webkit-scrollbar-thumb {
+  background-color: #2a2a2a;
+}
+
+.artist::-webkit-scrollbar-thumb:hover {
+  background-color: #504f4f;
+}
+
+
 .artist-info {
   display: flex;
   gap: 10px;
@@ -64,29 +82,83 @@
 .follow-btn:active {
   transform: scale(0.98);
 }
-
 .song-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  margin: 10px 0;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
 }
 
-.song-item p {
-  font-size: 18px;
-  margin: 0;
+.song-item:hover {
+  background-color: #2a2a2a;
 }
 
-.play-btn {
-  background-color: #1db954;
+.song-info {
+  display: flex;
+ 
+  align-items: center;
+}
+
+.song-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.song-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  
+}
+
+.song-name {
+  font-size: 16px;
+  font-weight: bold;
   color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 20px;
-  cursor: pointer;
+  margin-bottom: 5px;
 }
 
-.play-btn:hover {
-  background-color: #1ed760;
+.song-actions {
+  display: flex;
+  align-items: center;
+}
+
+.play-btn,
+.like-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.play-btn:hover,
+.like-btn:hover {
+  color: #97b91d; /* Spotify green color on hover */
+}
+
+.play-icon,
+.like-icon {
+  transition: transform 0.2s ease;
+}
+
+.play-btn:hover .play-icon,
+.like-btn:hover .like-icon {
+  transform: scale(1.2); /* Slight scale effect on hover */
+}
+
+
+.space {
+  margin-bottom: 80px;
+}
+
+.artist-songs{
+  margin-left: 10px;
 }

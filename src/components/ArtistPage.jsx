@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { FaPlay, FaHeart } from 'react-icons/fa';
 import "../styles/Home.css";
 import "../styles/ArtistPage.css";
 
@@ -48,27 +49,45 @@ const ArtistPage = () => {
           <button className="follow-btn">Follow</button>
         </div>
       </div>
+      
+      
 
       
       <div className="artist-songs">
-        <h3>Songs</h3>
+        <h3>Artist Song List</h3>
         <ul>
-          {songs.map((song) => (
-            <li key={song.songId}>
-              <div className="song-item">
-                <p>{song.songName}</p>
-                <button
-                  className="play-btn"
-                  onClick={() => console.log(`Playing ${song.songName}`)}
-                >
-                  Play
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
+        {songs.map((song) => (
+      <li key={song.songId} className="song-item">
+       <div className="song-info">
+      <img src={song.imageUrl} alt={song.songName} className="song-image" />
+      <div className="song-details">
+        <p className="song-name">{song.songName}</p>
+        <div className="song-actions">
+            <button
+            className="play-btn"
+            onClick={() => console.log(`Playing ${song.songName}`)}
+          >
+            <FaPlay className="play-icon" />
+          </button>
+          <button
+            className="like-btn"
+            onClick={() => console.log(`Liked ${song.songName}`)}
+          >
+            <FaHeart className="like-icon" />
+          </button>
+        </div>
       </div>
     </div>
+     </li>
+    ))}
+
+        </ul>
+      </div>
+      <div className='space'>
+
+     </div>
+    </div>
+    
   );
 };
 
