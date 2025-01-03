@@ -9,6 +9,7 @@ import MusicPlayer from "./components/musicPlayer";
 import Home from "./components/Home";
 import { Profile } from "./components/Profile";
 import { Footer } from "./components/Footer";
+import ArtistPage from "./components/ArtistPage";
 
 function App() {
   const updateSongRef = useRef(null);
@@ -38,6 +39,15 @@ function App() {
               </div>
             }
           />
+           <Route path="/artist/:artistId" element ={
+             <div>
+             <Header />
+             <Sidebar />
+             <ArtistPage />
+             <MusicPlayer updateSong={(fn) => (updateSongRef.current = fn)} />
+           </div>
+           } />
+
         </Routes>
       </BrowserRouter>
     </div>
