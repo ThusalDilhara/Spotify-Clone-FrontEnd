@@ -221,3 +221,7 @@
   opacity: 1;
   transform: translateX(-50%) translateY(-5px);
 }
+
+.liked{
+  color: #97b91d;
+}

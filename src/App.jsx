@@ -9,11 +9,24 @@ import MusicPlayer from "./components/musicPlayer";
 import Home from "./components/Home";
 import { Footer } from "./components/Footer";
 import ArtistPage from "./components/ArtistPage";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const updateSongRef = useRef(null);
   return (
     <div className="App">
+     <ToastContainer
+  position="top-right"
+  autoClose={1000} 
+
+  style={{
+    marginTop: "50px", 
+    zIndex: "9999", 
+    fontFamily: "'Helvetica Neue', sans-serif", 
+    fontSize: "12px", 
+  }}
+/>
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SignupComponenet />} />
