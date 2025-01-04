@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaPlay, FaHeart } from 'react-icons/fa';
 import "../styles/ArtistPage.css";
+import axios from "axios";
 
 const ArtistPage = ({updateSong}) => {
   const { artistId } = useParams();
@@ -16,28 +17,26 @@ const ArtistPage = ({updateSong}) => {
   };
   useEffect(() => {
     
-    fetch(`http://localhost:8080/api/artist/getArtistDetails/${artistId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setArtist(data);
+  axios
+  .get(`http://localhost:8080/api/artist/getArtistDetails/${artistId}`)
+  .then((response) => {
+    setArtist(response.data);
 
-        
-        if (data.songIds && data.songIds.length > 0) {
-          fetch('http://localhost:8080/api/songs/getSongsByIds', {
-            method: 'POST',  
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data.songIds), 
-          })
-            .then((response) => response.json())
-            .then((songData) => setSongs(songData))
-            .catch((error) =>
-              console.error("Error fetching song details:", error)
-            );
-        }
-      })
-      .catch((error) => console.error("Error fetching artist data:", error));
+    if (response.data.songIds && response.data.songIds.length > 0) {
+      axios
+        .post("http://localhost:8080/api/songs/getSongsByIds", response.data.songIds, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((songResponse) => setSongs(songResponse.data))
+        .catch((error) =>
+          console.error("Error fetching song details:", error)
+        );
+    }
+  })
+  .catch((error) => console.error("Error fetching artist data:", error));
+
   }, [artistId]);
 
 
