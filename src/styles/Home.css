@@ -14,7 +14,8 @@ body {
   overflow-y: auto;
   background-color: var(--spotify-dark-gray);
   color: var(--spotify-white);
-  padding: 20px;
+  padding-left: 20px;
+  padding-top: 20px;
   box-sizing: border-box;
 }
 .home::-webkit-scrollbar {

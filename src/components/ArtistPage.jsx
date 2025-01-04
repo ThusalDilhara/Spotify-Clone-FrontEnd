@@ -1,14 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaPlay, FaHeart } from 'react-icons/fa';
-import "../styles/Home.css";
 import "../styles/ArtistPage.css";
 
-const ArtistPage = () => {
+const ArtistPage = ({updateSong}) => {
   const { artistId } = useParams();
   const [artist, setArtist] = useState(null);
   const [songs, setSongs] = useState([]); 
-
+ 
+ 
+  const playSong = (song) => {
+    if (updateSong) {
+      updateSong(song); // Pass the selected song to the MusicPlayer
+    }
+  };
   useEffect(() => {
     
     fetch(`http://localhost:8080/api/artist/getArtistDetails/${artistId}`)
@@ -35,6 +40,7 @@ const ArtistPage = () => {
       .catch((error) => console.error("Error fetching artist data:", error));
   }, [artistId]);
 
+
   if (!artist) {
     return <p>Loading artist...</p>;
   }
@@ -54,18 +60,18 @@ const ArtistPage = () => {
 
       
       <div className="artist-songs">
-        <h3>Artist Song List</h3>
+        <h3>Popular</h3>
         <ul>
         {songs.map((song) => (
-      <li key={song.songId} className="song-item">
-       <div className="song-info">
-      <img src={song.imageUrl} alt={song.songName} className="song-image" />
-      <div className="song-details">
-        <p className="song-name">{song.songName}</p>
-        <div className="song-actions">
+         <li key={song.songId} className="Artistsongitem">
+         <div className="Artistsonginfo">
+         <img src={song.imageUrl} alt={song.songName} className="Artistsongimage" />
+         <div className="Artistsongdetails">
+         <p className="Artistsongname">{song.songName}</p>
+          <div className="Artistsongactions">
             <button
             className="play-btn"
-            onClick={() => console.log(`Playing ${song.songName}`)}
+            onClick={() => playSong(song)}
           >
             <FaPlay className="play-icon" />
           </button>
@@ -86,6 +92,7 @@ const ArtistPage = () => {
       <div className='space'>
 
      </div>
+     
     </div>
     
   );

@@ -42,8 +42,13 @@ function App() {
              <div>
              <Header />
              <Sidebar />
-             <ArtistPage />
-             <MusicPlayer updateSong={(fn) => (updateSongRef.current = fn)} />
+             <ArtistPage
+                  updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }
+                />
+                <MusicPlayer
+                  updateSong={(fn) => (updateSongRef.current = fn)}/>
            </div>
            } />
 

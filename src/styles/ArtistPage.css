@@ -82,50 +82,62 @@
 .follow-btn:active {
   transform: scale(0.98);
 }
-.song-item {
+
+.Artistsongitem {
+  position: relative;
   display: flex;
   align-items: center;
   margin: 10px 0;
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   transition: background-color 0.2s ease;
 }
-
-.song-item:hover {
+.Artistsongitem:hover {
   background-color: #2a2a2a;
 }
 
-.song-info {
+.Artistsonginfo {
   display: flex;
- 
-  align-items: center;
+
 }
 
-.song-image {
+.Artistsongimage {
   width: 50px;
   height: 50px;
+  border-radius: 5px;
   object-fit: cover;
   margin-right: 15px;
 }
 
-.song-details {
-  flex-grow: 1;
+.Artistsongdetails {
+
   display: flex;
   flex-direction: row;
-  gap: 100px;
+  
   
 }
 
-.song-name {
+.Artistsongname {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
   color: white;
   margin-bottom: 5px;
+  margin-left: 20px;
 }
 
-.song-actions {
+.Artistsongname:hover {
+  text-decoration: underline;
+}
+
+
+.Artistsongactions {
+  position: absolute;
+  right: 40px; 
+  top: 50%; 
+  transform: translateY(-50%); 
   display: flex;
   align-items: center;
+  gap: 15px;
 }
 
 .play-btn,
@@ -133,15 +145,15 @@
   background-color: transparent;
   border: none;
   color: white;
-  font-size: 24px;
-  margin-right: 15px;
+  font-size: 22px;
+  margin-right: 60px;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .play-btn:hover,
 .like-btn:hover {
-  color: #97b91d; /* Spotify green color on hover */
+  color: #97b91d; 
 }
 
 .play-icon,
@@ -151,7 +163,7 @@
 
 .play-btn:hover .play-icon,
 .like-btn:hover .like-icon {
-  transform: scale(1.2); /* Slight scale effect on hover */
+  transform: scale(1.2);
 }
 
 
@@ -161,4 +173,9 @@
 
 .artist-songs{
   margin-left: 10px;
+}
+
+.artist-songs h3{
+  font-size: 24px;
+  margin: 20px 0;
 }
