@@ -69,18 +69,25 @@ const ArtistPage = ({updateSong}) => {
          <div className="Artistsongdetails">
          <p className="Artistsongname">{song.songName}</p>
           <div className="Artistsongactions">
+          <div className="play-btn-wrapper">
             <button
             className="play-btn"
             onClick={() => playSong(song)}
           >
             <FaPlay className="play-icon" />
           </button>
+          <span className="custom-tooltip">Play Song</span>
+          </div>
+          <div className="like-btn-wrapper">
           <button
             className="like-btn"
             onClick={() => console.log(`Liked ${song.songName}`)}
+            
           >
             <FaHeart className="like-icon" />
+            <span className="custom-tooltip">Add to Liked Songs</span>
           </button>
+          </div>
         </div>
       </div>
     </div>
