@@ -1,14 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaPlay, FaHeart } from 'react-icons/fa';
+import { FaPlay, FaHeart,FaRegHeart } from 'react-icons/fa';
 import "../styles/ArtistPage.css";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ArtistPage = ({updateSong}) => {
   const { artistId } = useParams();
   const [artist, setArtist] = useState(null);
   const [songs, setSongs] = useState([]); 
- 
+  const [likedSongs, setLikedSongs] = useState([]);
+  const userId="6778c203c085eb28fe42fa69";
  
   const playSong = (song) => {
     if (updateSong) {
@@ -43,7 +45,28 @@ const ArtistPage = ({updateSong}) => {
   if (!artist) {
     return <p>Loading artist...</p>;
   }
+ 
+  
+  const handleLikedSong = ({ userId, songId,songName }) => {
+    
 
+    axios
+    .post("http://localhost:8080/api/users/likeSong", null, {
+      params: {
+        userId: userId,
+        songId: songId
+      }
+    })
+      .then((response) => {
+       
+        setLikedSongs((prevLikedSongs) => [...prevLikedSongs, songId]);
+        toast.success(`Liked ${songName}`);
+      })
+      
+      .catch((error) => {
+        console.error("Error adding song to liked songs:", error)});
+  }
+  
   return (
     <div className="artist">
       <div className="artist-info">
@@ -54,53 +77,67 @@ const ArtistPage = ({updateSong}) => {
           <button className="follow-btn">Follow</button>
         </div>
       </div>
-      
-      
 
-      
       <div className="artist-songs">
         <h3>Popular</h3>
-        <ul>
-        {songs.map((song) => (
-         <li key={song.songId} className="Artistsongitem">
-         <div className="Artistsonginfo">
-         <img src={song.imageUrl} alt={song.songName} className="Artistsongimage" />
-         <div className="Artistsongdetails">
-         <p className="Artistsongname">{song.songName}</p>
-          <div className="Artistsongactions">
-          <div className="play-btn-wrapper">
-            <button
-            className="play-btn"
-            onClick={() => playSong(song)}
-          >
-            <FaPlay className="play-icon" />
-          </button>
-          <span className="custom-tooltip">Play Song</span>
-          </div>
-          <div className="like-btn-wrapper">
-          <button
-            className="like-btn"
-            onClick={() => console.log(`Liked ${song.songName}`)}
-            
-          >
-            <FaHeart className="like-icon" />
-            <span className="custom-tooltip">Add to Liked Songs</span>
-          </button>
-          </div>
-        </div>
+        {songs.length === 0 ? (
+          <p>No songs from this artist yet</p>
+        ) : (
+          <ul>
+            {songs.map((song) => {
+              const isLiked = likedSongs.includes(song.songId); 
+              return (
+                <li key={song.songId} className="Artistsongitem">
+                  <div className="Artistsonginfo">
+                    <img
+                      src={song.imageUrl}
+                      alt={song.songName}
+                      className="Artistsongimage"
+                    />
+                    <div className="Artistsongdetails">
+                      <p className="Artistsongname">{song.songName}</p>
+                      <div className="Artistsongactions">
+                        <div className="play-btn-wrapper">
+                          <button
+                            className="play-btn"
+                            onClick={() => playSong(song)}
+                          >
+                            <FaPlay className="play-icon" />
+                          </button>
+                          <span className="custom-tooltip">Play Song</span>
+                        </div>
+                        <div className="like-btn-wrapper">
+                          <button
+                            className="like-btn"
+                            onClick={() =>
+                              handleLikedSong({
+                                userId,
+                                songId: song.songId,
+                                songName: song.songName,
+                              })
+                            }
+                          >
+                            {isLiked ? (
+                              <FaHeart className="like-icon liked" />
+                            ) : (
+                              <FaRegHeart className="like-icon" />
+                            )}
+                            <span className="custom-tooltip">
+                              {isLiked ? "Liked" : "Add to Liked Songs"}
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
+      <div className="space"></div>
     </div>
-     </li>
-    ))}
-
-        </ul>
-      </div>
-      <div className='space'>
-
-     </div>
-     
-    </div>
-    
   );
 };
 
