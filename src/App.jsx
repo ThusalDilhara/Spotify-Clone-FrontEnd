@@ -71,7 +71,10 @@ function App() {
               <div>
               <Header />
               <Sidebar />
-              <LikedSongPage/>
+              <LikedSongPage 
+                 updateSong={(song) =>
+                  updateSongRef.current && updateSongRef.current(song)
+                }/>
                  <MusicPlayer
                    updateSong={(fn) => (updateSongRef.current = fn)}/>
              </div>
