@@ -18,7 +18,7 @@ body {
   max-width: 400px;
   background: #0c130e;
   border-radius: 8px;
-  padding: 20px;
+  padding: 40px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
   text-align: center;
 }
@@ -91,20 +91,20 @@ body {
   font-size: small;
   font-weight: 600;
   margin-right: 400px;
-  margin-bottom: 10px;
+  margin-bottom: -8px;
 }
 
 .text-password1 {
   font-size: small;
   text-align: left;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .test-password2 {
   font-size: smaller;
   text-align: left;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   font-weight: 500;
 }
 
@@ -136,4 +136,25 @@ body {
 .extra-options a {
   color: #fff;
   text-decoration: underline;
+}
+
+.error-message-form-signup-username{
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: -15px;
+}
+
+.error-message-form-signup-email{
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: -15px;
+}
+
+.error-message-form-signup-password{
+  color: red;
+  font-size: 12px;
+  margin-top: -15px;
+  
 }
