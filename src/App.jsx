@@ -10,22 +10,23 @@ import Home from "./components/Home";
 import { Footer } from "./components/Footer";
 import ArtistPage from "./components/ArtistPage";
 import { ToastContainer } from "react-toastify";
+import LikedSongPage from "./components/LikedSongPage";
 
 function App() {
   const updateSongRef = useRef(null);
   return (
     <div className="App">
      <ToastContainer
-  position="top-right"
-  autoClose={1000} 
+     position="top-right"
+     autoClose={1000} 
 
-  style={{
+   style={{
     marginTop: "50px", 
     zIndex: "9999", 
     fontFamily: "'Helvetica Neue', sans-serif", 
     fontSize: "12px", 
   }}
-/>
+  />
 
       <BrowserRouter>
         <Routes>
@@ -62,8 +63,19 @@ function App() {
                 />
                 <MusicPlayer
                   updateSong={(fn) => (updateSongRef.current = fn)}/>
-           </div>
+            </div>
            } />
+           <Route path="/likedSong" element={
+              <div>
+              <Header />
+              <Sidebar />
+              <LikedSongPage/>
+                 <MusicPlayer
+                   updateSong={(fn) => (updateSongRef.current = fn)}/>
+             </div>
+             } />
+            
+           
 
         </Routes>
       </BrowserRouter>

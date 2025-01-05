@@ -56,20 +56,20 @@ const ArtistPage = ({ updateSong }) => {
   
   const handleLikedSong = ({ userId, songId, songName }) => {
     const isLiked = likedSongs.includes(songId);
-    console.log("isLiked:", isLiked);  // Add a log to see the value of isLiked
+    
     
     if (isLiked) {
       axios
         .delete(`http://localhost:8080/api/users/removeLikedSong/${userId}/${songId}`)
         .then((response) => {
-          console.log("Song removed from liked songs:", response);
+        
           setLikedSongs((prevLikedSongs) =>
             prevLikedSongs.filter((id) => id !== songId)
           );
           toast.success(`Removed ${songName} from liked songs`);
         })
         .catch((error) => {
-          console.error("Error removing song from liked songs:", error);
+          
           toast.error("Failed to remove song from liked songs");
         });
     } else {
@@ -82,7 +82,7 @@ const ArtistPage = ({ updateSong }) => {
           toast.success(`Liked ${songName}`);
         })
         .catch((error) => {
-          console.error("Error adding song to liked songs:", error);
+       
           toast.error("Failed to add song to liked songs");
         });
     }
