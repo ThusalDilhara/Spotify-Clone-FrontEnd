@@ -4,14 +4,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import SongRow from "./SongRow";  
 import "../styles/ArtistPage.css";
-
+import { Footer } from './Footer';
 
 const ArtistPage = ({ updateSong }) => {
   const { artistId } = useParams();
   const [artist, setArtist] = useState(null);
   const [songs, setSongs] = useState([]);
   const [likedSongs, setLikedSongs] = useState([]);
-  const [followedArtist,setFollowedArtist]=useState([]);
+  const [isFollowing, setIsFollowing] = useState(false); 
   const userId = "6778c203c085eb28fe42fa69"; 
 
   const playSong = (song) => {
@@ -21,6 +21,7 @@ const ArtistPage = ({ updateSong }) => {
   };
 
   useEffect(() => {
+
     axios
       .get(`http://localhost:8080/api/artist/getArtistDetails/${artistId}`)
       .then((response) => {
@@ -39,12 +40,21 @@ const ArtistPage = ({ updateSong }) => {
       })
       .catch((error) => console.error("Error fetching artist data:", error));
 
+   
     axios
       .get(`http://localhost:8080/api/users/getlikedSongs/${userId}`)
       .then((response) => {
         setLikedSongs(response.data);
       })
       .catch((error) => console.error("Error fetching liked songs:", error));
+
+    
+    axios
+      .get(`http://localhost:8080/api/users/isFollowingArtist/${userId}/${artistId}`)
+      .then((response) => {
+        setIsFollowing(response.data);
+      })
+      .catch((error) => console.error("Error checking following status:", error));
   }, [artistId, userId]);
 
   const handleLikedSong = (songId, songName) => {
@@ -77,6 +87,32 @@ const ArtistPage = ({ updateSong }) => {
     }
   };
 
+  const handleFollowArtist = () => {
+    if (isFollowing) {
+      
+      axios
+        .delete(`http://localhost:8080/api/users/unfollowArtist/${userId}/${artistId}`)
+        .then(() => {
+          setIsFollowing(false);
+          toast.success(`You have unfollowed ${artist.artistName}`);
+        })
+        .catch(() => {
+          toast.error(`Failed to unfollow ${artist.artistName}`);
+        });
+    } else {
+      
+      axios
+        .post(`http://localhost:8080/api/users/followArtist/${userId}/${artistId}`)
+        .then(() => {
+          setIsFollowing(true);
+          toast.success(`You are now following ${artist.artistName}`);
+        })
+        .catch(() => {
+          toast.error(`Failed to follow ${artist.artistName}`);
+        });
+    }
+  };
+
   if (!artist) {
     return <p>Loading artist...</p>;
   }
@@ -88,7 +124,9 @@ const ArtistPage = ({ updateSong }) => {
         <div className="artist-stats">
           <h2>{artist.artistName}</h2>
           <h3>85,000 followers</h3>
-          <button className="follow-btn">Follow</button>
+          <button className={` ${isFollowing?'following':'follow-btn'} `}  onClick={handleFollowArtist}>
+            {isFollowing ? "Following" : "Follow"}
+          </button>
         </div>
       </div>
 
@@ -109,8 +147,12 @@ const ArtistPage = ({ updateSong }) => {
             ))}
           </ul>
         )}
+       <div className="space"></div>
+       <div className="space"></div>
+        <Footer/>
       </div>
-      <div className="space"></div>
+     
+      <div className='space'></div>
     </div>
   );
 };

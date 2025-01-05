@@ -5,6 +5,7 @@ import '../styles/LikedSongPage.css'
 import SongRow from './SongRow';
 import axios from 'axios';
 import { toast } from "react-toastify";
+import { Footer } from './Footer';
 
 const LikedSongPage = ({updateSong}) => {
 
@@ -95,8 +96,9 @@ const LikedSongPage = ({updateSong}) => {
         )  }
         </div>
        
-        <div className="space"></div>
-
+        <div className="gap"></div>
+       
+         <Footer/>
     </div>
   )
 }

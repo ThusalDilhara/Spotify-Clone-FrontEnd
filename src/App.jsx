@@ -19,7 +19,7 @@ function App() {
     <div className="App">
       <ToastContainer
         position="top-right"
-        autoClose={1000}
+        autoClose={2000}
         style={{
           marginTop: "50px",
           zIndex: "9999",
