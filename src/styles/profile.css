@@ -1,0 +1,127 @@
+.main-container{
+    background-color: #121212;
+    overflow-y: auto;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  padding: 5px;
+  width: 40%;
+  margin: auto;
+  border-radius: 10px;
+  height: 100vh;
+}
+
+h1{
+    font-size: 50px;
+}
+
+.backButton{
+    margin-left: 0;
+    background-color: #d1cfcf;
+    border-color: #d1cfcf;
+    margin-top: 20px;
+    border-radius: 50%;
+    
+}
+
+.backButton img{
+    border-radius: 50%;
+    background-color: #d1cfcf;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .profile-input,select {
+    padding: 10px;
+    background-color: #000000;
+    border: 1px solid #555;
+    border-radius: 5px;
+    color: #fff;
+    outline: none;
+    
+  }
+  
+  .profile-input::placeholder {
+    color: #aaa;
+  }
+  .profile-input:focus{
+    border-color: #fff;
+    border: 1px solid;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: end; 
+    gap: 10px;
+  }
+  
+  .button-save{
+    padding: 10px 20px;
+   margin-left: 3px;
+    background-color: #1db954;
+    color: #000000;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    width: auto;
+    align-items: end;
+  }
+  .button-delete {
+    padding: 10px 20px;
+   margin-left: 3px;
+    background-color: #f9f9f9;
+    color: #000000;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    width: auto;
+    align-items: end;
+  }
+  .button-delete:hover{
+    background-color: rgb(227, 66, 66);
+  }
+  
+ 
+  input:-webkit-autofill {
+    background-color: #050505 !important; 
+    color: #ffffff !important; 
+    -webkit-text-fill-color: #f4f1f1 !important; 
+    -webkit-box-shadow: 0 0 0px 1000px #000000 inset !important; 
+
+  }
+
+
+  input:hover:-webkit-autofill {
+    background-color: #0b0b0b !important; 
+  }
+  
+  .button-save:hover {
+    background-color: #1ed760;
+    
+  }
+  
+  .dob {
+    display: block;
+    width: 300;
+    background-color: #121212;
+
+  }

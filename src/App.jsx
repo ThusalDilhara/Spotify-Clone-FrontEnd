@@ -33,6 +33,7 @@ function App() {
           <Route path="/" element={<SignupComponenet />} />
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/footer" element={<Footer />} />
+          <Route path="/profile" element={<Profile />} />
           <Route
             path="/home"
             element={
