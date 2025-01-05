@@ -28,7 +28,7 @@
   background-color: #504f4f;
 }
 
-.LikedSongPage img {
+.LikedSongPage .header_img {
   width: 250px;
   height: 250px;
   border-radius: 5px;

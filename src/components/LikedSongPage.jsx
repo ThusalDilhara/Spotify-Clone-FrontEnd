@@ -1,13 +1,16 @@
 import {React,useEffect,useState} from 'react'
 import '../styles/ArtistPage.css'
-import likedSong from '../assets/liked_Song.jpg';
+import likedSongImage from '../assets/liked_Song.jpg';
 import '../styles/LikedSongPage.css'
 import SongRow from './SongRow';
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 const LikedSongPage = ({updateSong}) => {
 
   const[likedSongs, setLikedSongs] = useState([]);
+  const [songs, setSongs] = useState([]);
+  const[data,setData]=useState([]);
   const userId = "6778c203c085eb28fe42fa69";
   
   const playSong = (song) => {
@@ -19,15 +22,32 @@ const LikedSongPage = ({updateSong}) => {
   useEffect(()=>{
     axios.get(`http://localhost:8080/api/users/getlikedSongs/${userId}`)
     .then((response) => {
+      console.log(response.data);
       setLikedSongs(response.data);
-    })
-    .catch((error) => console.error("Error fetching song details:", error));
-  })
+    
+    
 
-  const handleLikedSong = (songId, songName) => {
-    const isLiked = likedSongs.includes(songId);
+    if (response.data && response.data.length > 0) {
+      axios
+        .post("http://localhost:8080/api/songs/getSongsByIds", response.data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((songResponse) => setSongs(songResponse.data))
+        .catch((error) => console.error("Error fetching song details:", error));
+    }
+   })
+   .catch((error) => console.error("Error fetching artist data:", error));
 
-    if (isLiked) {
+   axios.get(`http://localhost:8080/api/users/getUserDetails/${userId}`)
+   .then((response) => {
+     setData(response.data);
+   })  
+
+  },[userId]);
+
+    const handleLikedSong = (songId, songName) => {
       axios
         .delete(`http://localhost:8080/api/users/removeLikedSong/${userId}/${songId}`)
         .then(() => {
@@ -39,58 +59,39 @@ const LikedSongPage = ({updateSong}) => {
         .catch(() => {
           toast.error("Failed to remove song from liked songs");
         });
-    } else {
-      axios
-        .post("http://localhost:8080/api/users/likeSong", null, {
-          params: { userId, songId },
-        })
-        .then(() => {
-          setLikedSongs((prevLikedSongs) => [...prevLikedSongs, songId]);
-          toast.success(`Liked ${songName}`);
-        })
-        .catch(() => {
-          toast.error("Failed to add song to liked songs");
-        });
     }
-  };
+    
+  
 
   return (
     <div className='LikedSongPage'>
       <div className='LikedSongPage_header'>
-         <img src={likedSong} alt="LikedSong Image" />
+         <img src={likedSongImage} alt="LikedSong Image" className='header_img' />
           <div className='LikedSongPage_info'>
             <h2>Liked Songs</h2>
-            <h4>UserName : No of Songs</h4>
+            <h4>{data.userName} : {songs.length} Songs</h4>
           </div>
       </div>
       <div className='LikedSongPage_body'>
         <h2>Song List </h2>
-        {likedSongs.length===0?
+        {songs.length===0?
              (<p>You Haven't Liked any Song Yet...</p>):
         (
            <ul>
-            {likedSongs.map((song) => (
+            {songs.map((song) => (
               <SongRow
                   key={song.songId}
                   song={song}
-                  isLiked={likedSongs.includes(song.songId)}
+                  isLiked={true}
                   onPlay={playSong}
                   onLikeToggle={handleLikedSong}/>
 
             ))}
-           </ul>      
-             
-        
+           </ul>          
         )  }
-             
-
-     
         </div>
        
         <div className="space"></div>
-
-
-
 
     </div>
   )

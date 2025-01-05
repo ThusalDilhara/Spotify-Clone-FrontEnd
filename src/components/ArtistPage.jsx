@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import SongRow from "./SongRow";  
 import "../styles/ArtistPage.css";
 
+
 const ArtistPage = ({ updateSong }) => {
   const { artistId } = useParams();
   const [artist, setArtist] = useState(null);
