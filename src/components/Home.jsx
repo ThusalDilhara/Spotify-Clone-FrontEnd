@@ -11,6 +11,7 @@ import image5 from '../assets/image-5.jpg';
 import image6 from '../assets/image-6.jpg';
 import SongItem from './SongItem';
 import ArtistItem from './artistItem';
+import { Footer } from './Footer';
 
 
 const albums = [
@@ -59,22 +60,24 @@ const Home = ({ updateSong }) => {
 
   useEffect(() => {
     // Fetch song details from the backend
-    fetch("http://localhost:8080/api/songs/getdetails")
-      .then((response) => response.json())
-      .then((data) =>{
-                      console.log(data); 
-                      setSongs(data);})
+     axios.get("http://localhost:8080/api/songs/getdetails")
+     
+      .then((response) =>{
+                     
+                      setSongs(response.data);})
       .catch((error) => console.error('Error fetching songs:', error));
   }, []); // Empty dependency array to run this effect only once
  
   useEffect(() => {
     // Fetch artist details from the backend
-    fetch("http://localhost:8080/api/artist/getAllArtists")
-      .then((response) => response.json())
-      .then((data) => {
-                      console.log(data); 
-                      setArtists(data);}) 
-      .catch((error) => console.error('Error fetching artists:', error));
+    axios
+       .get("http://localhost:8080/api/artist/getAllArtists")
+        .then((response) => {
+          setArtists(response.data); 
+        })
+      .catch((error) => {
+       console.error('Error fetching artists:', error);
+       });
   }, []); 
   
   return (
@@ -113,6 +116,12 @@ const Home = ({ updateSong }) => {
      <div className='space'>
 
      </div>
+
+     <Footer/>
+     <div className='space'>
+
+     </div>
+
 
     
     </div>

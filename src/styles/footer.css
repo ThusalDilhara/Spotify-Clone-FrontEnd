@@ -1,5 +1,5 @@
 .main-row{
-    margin-left: 350px;
+    
     display: flex;
     margin-top: 50px;
     font-size: 15px;
@@ -61,12 +61,12 @@
 }
 
 .horizontal-line{
-    margin-left: 350px;
+    margin-left: 0;
 }
 
 .horizontal-phrases{
     font-size: 15px;
-    margin-left: 350px;
+    
     display: flex;
     gap: 25px;
     color: rgb(130, 129, 127);

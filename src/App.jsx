@@ -7,17 +7,32 @@ import Header from "./components/Header";
 import Sidebar from "./components/sideBar";
 import MusicPlayer from "./components/musicPlayer";
 import Home from "./components/Home";
-import { Profile } from "./components/Profile";
 import { Footer } from "./components/Footer";
 import ArtistPage from "./components/ArtistPage";
+import { ToastContainer } from "react-toastify";
+import LikedSongPage from "./components/LikedSongPage";
+import Profile from "./components/Profile";
 
 function App() {
   const updateSongRef = useRef(null);
   return (
     <div className="App">
+     <ToastContainer
+     position="top-right"
+     autoClose={1000} 
+
+   style={{
+    marginTop: "50px", 
+    zIndex: "9999", 
+    fontFamily: "'Helvetica Neue', sans-serif", 
+    fontSize: "12px", 
+  }}
+  />
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SignupComponenet />} />
+          <Route path="/login" element={<LoginComponent />} />
           <Route path="/footer" element={<Footer />} />
           <Route path="/profile" element={<Profile />} />
           <Route
@@ -34,22 +49,36 @@ function App() {
                 <MusicPlayer
                   updateSong={(fn) => (updateSongRef.current = fn)}
                 />
+
+                
               </div>
             }
           />
-          <Route
-            path="/artist/:artistId"
-            element={
-              <div>
-                <Header />
-                <Sidebar />
-                <ArtistPage />
-                <MusicPlayer
-                  updateSong={(fn) => (updateSongRef.current = fn)}
+           <Route path="/artist/:artistId" element ={
+             <div>
+             <Header />
+             <Sidebar />
+             <ArtistPage
+                  updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }
                 />
-              </div>
-            }
-          />
+                <MusicPlayer
+                  updateSong={(fn) => (updateSongRef.current = fn)}/>
+            </div>
+           } />
+           <Route path="/likedSong" element={
+              <div>
+              <Header />
+              <Sidebar />
+              <LikedSongPage/>
+                 <MusicPlayer
+                   updateSong={(fn) => (updateSongRef.current = fn)}/>
+             </div>
+             } />
+            
+           
+
         </Routes>
       </BrowserRouter>
     </div>
