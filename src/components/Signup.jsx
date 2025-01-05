@@ -4,8 +4,64 @@ import { CiCircleChevRight } from "react-icons/ci";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignupPage = () => {
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [passwordField, setPasswordField] = useState("");
   const [visible, setVisible] = useState(false);
+  const [errors, setErrors] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  // Validation functions
+  const validateUsername = (username) => {
+    if (!username) return "Username is required.";
+    if (username.length < 3) return "Username must be at least 3 characters.";
+    return "";
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!email) return "Email is required.";
+    if (!emailRegex.test(email)) return "Enter a valid email address.";
+    return "";
+  };
+
+  const validatePassword = (password) => {
+    const passwordRegex =
+      /^(?=.*[A-Za-z])(?=.*[\d!@#$%^&*?])[A-Za-z\d!@#$%^&*?]{10,}$/;
+    if (!password) return "Password is required.";
+    if (!passwordRegex.test(password))
+      return "Password must contain at least 1 letter, 1 number or special character, and 10 characters.";
+    return "";
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate fields
+    const usernameError = validateUsername(username);
+    const emailError = validateEmail(email);
+    const passwordError = validatePassword(passwordField);
+
+    if (usernameError || emailError || passwordError) {
+      setErrors({
+        username: usernameError,
+        email: emailError,
+        password: passwordError,
+      });
+    } else {
+      // Proceed with form submission logic
+      console.log("Form submitted successfully:", {
+        username,
+        email,
+        passwordField,
+      });
+    }
+  };
+
   return (
     <div className="signup-container">
       <div className="signup-box">
@@ -18,7 +74,8 @@ const SignupPage = () => {
         </div>
         <div className="text1">Sign up to</div>
         <div className="text2">start listening</div>
-        <form>
+        <form onSubmit={handleSubmit}>
+          {/* Username Field */}
           <div className="input-group">
             <label htmlFor="username">Username</label>
             <input
@@ -26,10 +83,18 @@ const SignupPage = () => {
               id="username"
               name="username"
               placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
+            {errors.username && (
+              <div className="error-message-form-signup-username">
+                {errors.username}
+              </div>
+            )}
           </div>
 
+          {/* Email Field */}
           <div className="input-group">
             <label htmlFor="email">Email</label>
             <input
@@ -37,17 +102,25 @@ const SignupPage = () => {
               id="email"
               name="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
+            {errors.email && (
+              <div className="error-message-form-signup-email">
+                {errors.email}
+              </div>
+            )}
           </div>
-          <div className="text-password-signup">Password</div>
 
+          {/* Password Field */}
+          <div className="text-password-signup">Password</div>
           <div className="input-group-signup">
             <input
               className="signup-input"
               type={visible ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={passwordField}
+              onChange={(e) => setPasswordField(e.target.value)}
               id="password"
               placeholder="Password"
               required
@@ -56,9 +129,16 @@ const SignupPage = () => {
               className="password-button"
               onClick={() => setVisible(!visible)}
             >
-              {visible ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
+              {visible ? <FaEye /> : <FaEyeSlash />}
             </div>
           </div>
+          {errors.password && (
+            <div className="error-message-form-signup-password">
+              {errors.password}
+            </div>
+          )}
+
+          {/* Password Requirements */}
           <div className="text-password1">
             Your password must contain at least
           </div>
@@ -70,9 +150,10 @@ const SignupPage = () => {
             &)
           </div>
           <div className="test-password2">
-            <CiCircleChevRight /> 10 characters (example: # ? ! &)
+            <CiCircleChevRight /> 10 characters
           </div>
 
+          {/* Submit Button */}
           <button type="submit" className="signup-button">
             Sign Up
           </button>
