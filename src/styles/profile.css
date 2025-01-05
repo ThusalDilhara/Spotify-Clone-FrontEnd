@@ -44,8 +44,7 @@ form {
     margin-bottom: 5px;
   }
   
-  input,
-  select {
+  .profile-input,select {
     padding: 10px;
     background-color: #000000;
     border: 1px solid #555;
@@ -55,10 +54,10 @@ form {
     
   }
   
-  input::placeholder {
+  .profile-input::placeholder {
     color: #aaa;
   }
-  input:focus{
+  .profile-input:focus{
     border-color: #fff;
     border: 1px solid;
   }

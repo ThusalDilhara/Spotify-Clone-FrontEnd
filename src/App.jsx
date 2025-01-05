@@ -19,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SignupComponenet />} />
           <Route path="/footer" element={<Footer />} />
+          <Route path="/profile" element={<Profile />} />
           <Route
             path="/home"
             element={
@@ -33,21 +34,22 @@ function App() {
                 <MusicPlayer
                   updateSong={(fn) => (updateSongRef.current = fn)}
                 />
-
-                <Profile />
-                <Footer />
               </div>
             }
           />
-           <Route path="/artist/:artistId" element ={
-             <div>
-             <Header />
-             <Sidebar />
-             <ArtistPage />
-             <MusicPlayer updateSong={(fn) => (updateSongRef.current = fn)} />
-           </div>
-           } />
-
+          <Route
+            path="/artist/:artistId"
+            element={
+              <div>
+                <Header />
+                <Sidebar />
+                <ArtistPage />
+                <MusicPlayer
+                  updateSong={(fn) => (updateSongRef.current = fn)}
+                />
+              </div>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
