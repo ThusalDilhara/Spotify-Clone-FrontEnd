@@ -73,15 +73,19 @@ function App() {
             path="/likedSong"
             element={
               <div>
-                <Header />
-                <Sidebar />
-                <LikedSongPage />
-                <MusicPlayer
-                  updateSong={(fn) => (updateSongRef.current = fn)}
-                />
-              </div>
-            }
-          />
+              <Header />
+              <Sidebar />
+              <LikedSongPage 
+                 updateSong={(song) =>
+                  updateSongRef.current && updateSongRef.current(song)
+                }/>
+                 <MusicPlayer
+                   updateSong={(fn) => (updateSongRef.current = fn)}/>
+             </div>
+             } />
+            
+           
+
         </Routes>
       </BrowserRouter>
     </div>

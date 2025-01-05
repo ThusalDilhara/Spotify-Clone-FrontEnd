@@ -1,0 +1,60 @@
+.LikedSongPage {
+  position: absolute;
+  top: 70px;
+  left: 295px;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  background-color: var(--spotify-dark-gray);
+  color: var(--spotify-white);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.LikedSongPage::-webkit-scrollbar {
+  width: 12px;
+}
+
+.LikedSongPage::-webkit-scrollbar-track {
+  background: var(--spotify-dark-gray);
+  border-radius: 6px;
+}
+
+.LikedSongPage::-webkit-scrollbar-thumb {
+  background-color: #2a2a2a;
+}
+
+.LikedSongPage::-webkit-scrollbar-thumb:hover {
+  background-color: #504f4f;
+}
+
+.LikedSongPage .header_img {
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
+}
+
+.LikedSongPage_header {
+  display: flex;
+  gap: 20px;
+  background: linear-gradient(to bottom, #1e3c72, #2a5298);
+  padding: 10px;
+}
+
+.LikedSongPage_header h2 {
+  font-size: 70px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin-top: 25px;
+}
+
+.LikedSongPage_info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.LikedSongPage_body {
+  padding-left: 20px;
+}
