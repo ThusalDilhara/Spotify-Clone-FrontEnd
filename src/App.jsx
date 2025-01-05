@@ -11,6 +11,7 @@ import { Footer } from "./components/Footer";
 import ArtistPage from "./components/ArtistPage";
 import { ToastContainer } from "react-toastify";
 import LikedSongPage from "./components/LikedSongPage";
+import Profile from "./components/Profile";
 
 function App() {
   const updateSongRef = useRef(null);
