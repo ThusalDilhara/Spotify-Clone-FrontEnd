@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/Header.css';
 import { FaSearch, FaUserCircle} from 'react-icons/fa';
 import { GoHomeFill } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -12,11 +13,12 @@ const Header = () => {
           alt="Spotify Logo"
         />
       </div>
-
+      <Link to="/home">
       <div className="header_home">
         <GoHomeFill className="home_icon" />
         
       </div>
+      </Link>
       
 
       <div className="header_search">

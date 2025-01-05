@@ -73,3 +73,7 @@
   color: var(--spotify-white);
   font-weight: bold;
 }
+
+a{
+  text-decoration: none;
+}

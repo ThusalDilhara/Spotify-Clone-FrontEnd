@@ -54,6 +54,10 @@ const LikedSongPage = ({updateSong}) => {
           setLikedSongs((prevLikedSongs) =>
             prevLikedSongs.filter((id) => id !== songId)
           );
+          setSongs((prevSongs) =>
+            prevSongs.filter((song) => song.songId !== songId)
+          );
+  
           toast.success(`Removed ${songName} from liked songs`);
         })
         .catch(() => {
