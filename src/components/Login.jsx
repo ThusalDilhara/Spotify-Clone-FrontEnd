@@ -37,6 +37,7 @@ const LoginComponent = () => {
               type="text"
               placeholder="Username or Email"
               className="login-input"
+              value={target}
               required
             />
           </div>
@@ -61,8 +62,8 @@ const LoginComponent = () => {
               {visible ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
             </div>
           </div>
-          <button type="submit" className="login-button" >
-           <a href="/home"> Log In</a>
+          <button type="submit" className="login-button">
+            <a href="/home"> Log In</a>
           </button>
         </form>
         <div className="text-forgot">
