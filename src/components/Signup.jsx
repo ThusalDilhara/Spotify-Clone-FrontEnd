@@ -75,7 +75,6 @@ const SignupPage = () => {
         <div className="text1">Sign up to</div>
         <div className="text2">start listening</div>
         <form onSubmit={handleSubmit}>
-          {/* Username Field */}
           <div className="input-group">
             <label htmlFor="username">Username</label>
             <input
@@ -94,7 +93,6 @@ const SignupPage = () => {
             )}
           </div>
 
-          {/* Email Field */}
           <div className="input-group">
             <label htmlFor="email">Email</label>
             <input
@@ -113,7 +111,6 @@ const SignupPage = () => {
             )}
           </div>
 
-          {/* Password Field */}
           <div className="text-password-signup">Password</div>
           <div className="input-group-signup">
             <input
@@ -138,7 +135,6 @@ const SignupPage = () => {
             </div>
           )}
 
-          {/* Password Requirements */}
           <div className="text-password1">
             Your password must contain at least
           </div>
@@ -153,7 +149,6 @@ const SignupPage = () => {
             <CiCircleChevRight /> 10 characters
           </div>
 
-          {/* Submit Button */}
           <button type="submit" className="signup-button">
             Sign Up
           </button>
