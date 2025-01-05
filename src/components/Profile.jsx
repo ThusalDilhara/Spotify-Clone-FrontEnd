@@ -1,7 +1,8 @@
 import React from "react";
 import backButton from "../assets/profile/backButton.svg";
 import "../styles/profile.css";
-export const Profile = () => {
+
+const Profile = () => {
   return (
     <div className="main-container">
       <div>
@@ -70,3 +71,5 @@ export const Profile = () => {
     </div>
   );
 };
+
+export default Profile;
