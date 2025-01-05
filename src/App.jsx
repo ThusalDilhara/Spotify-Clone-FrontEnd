@@ -17,17 +17,16 @@ function App() {
   const updateSongRef = useRef(null);
   return (
     <div className="App">
-     <ToastContainer
-     position="top-right"
-     autoClose={1000} 
-
-   style={{
-    marginTop: "50px", 
-    zIndex: "9999", 
-    fontFamily: "'Helvetica Neue', sans-serif", 
-    fontSize: "12px", 
-  }}
-  />
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        style={{
+          marginTop: "50px",
+          zIndex: "9999",
+          fontFamily: "'Helvetica Neue', sans-serif",
+          fontSize: "12px",
+        }}
+      />
 
       <BrowserRouter>
         <Routes>
@@ -35,6 +34,7 @@ function App() {
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/footer" element={<Footer />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/login" element={<LoginComponent />} />
           <Route
             path="/home"
             element={
@@ -49,25 +49,29 @@ function App() {
                 <MusicPlayer
                   updateSong={(fn) => (updateSongRef.current = fn)}
                 />
-
-                
               </div>
             }
           />
-           <Route path="/artist/:artistId" element ={
-             <div>
-             <Header />
-             <Sidebar />
-             <ArtistPage
+          <Route
+            path="/artist/:artistId"
+            element={
+              <div>
+                <Header />
+                <Sidebar />
+                <ArtistPage
                   updateSong={(song) =>
                     updateSongRef.current && updateSongRef.current(song)
                   }
                 />
                 <MusicPlayer
-                  updateSong={(fn) => (updateSongRef.current = fn)}/>
-            </div>
-           } />
-           <Route path="/likedSong" element={
+                  updateSong={(fn) => (updateSongRef.current = fn)}
+                />
+              </div>
+            }
+          />
+          <Route
+            path="/likedSong"
+            element={
               <div>
               <Header />
               <Sidebar />
