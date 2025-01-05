@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
 
 
-
   return (
     <div className="sidebar">
       <div className="sidebar_header">
@@ -21,7 +20,9 @@ const Sidebar = () => {
       </div>
 
       <Link to="/likedSong">
+       
         <SidebarItem img={likedSong} text="Liked Songs" />
+        
       </Link>
       <SidebarItem img={likedPlaylist} text="Liked Playlist" />
       <SidebarItem img={followedArtist} text="followed artist" />

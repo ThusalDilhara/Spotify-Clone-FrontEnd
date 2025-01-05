@@ -11,6 +11,7 @@ const ArtistPage = ({ updateSong }) => {
   const [artist, setArtist] = useState(null);
   const [songs, setSongs] = useState([]);
   const [likedSongs, setLikedSongs] = useState([]);
+  const [followedArtist,setFollowedArtist]=useState([]);
   const userId = "6778c203c085eb28fe42fa69"; 
 
   const playSong = (song) => {
