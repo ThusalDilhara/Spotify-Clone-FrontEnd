@@ -12,6 +12,7 @@ import ArtistPage from "./components/ArtistPage";
 import { ToastContainer } from "react-toastify";
 import LikedSongPage from "./components/LikedSongPage";
 import Profile from "./components/Profile";
+import FollowedArtistPage from "./components/FollowedArtistPage";
 
 function App() {
   const updateSongRef = useRef(null);
@@ -19,7 +20,7 @@ function App() {
     <div className="App">
       <ToastContainer
         position="top-right"
-        autoClose={1000}
+        autoClose={2000}
         style={{
           marginTop: "50px",
           zIndex: "9999",
@@ -83,6 +84,19 @@ function App() {
                    updateSong={(fn) => (updateSongRef.current = fn)}/>
              </div>
              } />
+
+           <Route
+            path="/followedArtist"
+            element={
+              <div>
+              <Header />
+              <Sidebar />
+              <FollowedArtistPage/>
+               <MusicPlayer
+                   updateSong={(fn) => (updateSongRef.current = fn)}/>
+             </div>
+             } />
+            
             
            
 

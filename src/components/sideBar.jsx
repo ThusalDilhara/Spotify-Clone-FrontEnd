@@ -25,7 +25,10 @@ const Sidebar = () => {
         
       </Link>
       <SidebarItem img={likedPlaylist} text="Liked Playlist" />
+
+      <Link to="/followedArtist">
       <SidebarItem img={followedArtist} text="followed artist" />
+      </Link>
       
     </div>
   );
