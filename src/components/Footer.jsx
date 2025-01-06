@@ -68,14 +68,35 @@ export const Footer = () => {
           </ul>
         </div>
         <div className="footer-icons">
-          <img src={twitter} alt="twitter" />
-          <img src={facebook} alt="twitter" />
+          <img
+            src={twitter}
+            alt="twitter"
+            onClick={() =>
+              window.open(
+                "https://x.com/Spotify?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor",
+                "_blank"
+              )
+            }
+          />
+          <img
+            src={facebook}
+            alt="facebook"
+            onClick={() =>
+              window.open(
+                "https://web.facebook.com/Spotify/?_rdc=1&_rdr#",
+                "_blank"
+              )
+            }
+          />
           <img
             style={{
               marginTop: "-2px",
             }}
             src={instagram}
-            alt="twitter"
+            alt="instagram"
+            onClick={() =>
+              window.open("https://www.instagram.com/spotify/", "_blank")
+            }
           />
         </div>
       </div>
