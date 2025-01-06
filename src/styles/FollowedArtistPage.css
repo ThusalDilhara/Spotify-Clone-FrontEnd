@@ -1,0 +1,56 @@
+.FollowedArtistPage {
+  position: absolute;
+  top: 70px;
+  left: 295px;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  background-color: var(--spotify-dark-gray);
+  color: var(--spotify-white);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.FollowedArtistPage::-webkit-scrollbar {
+  width: 12px;
+}
+
+.FollowedArtistPage::-webkit-scrollbar-track {
+  background: var(--spotify-dark-gray);
+  border-radius: 6px;
+}
+
+.FollowedArtistPage::-webkit-scrollbar-thumb {
+  background-color: #2a2a2a;
+}
+
+.FollowedArtistPage::-webkit-scrollbar-thumb:hover {
+  background-color: #504f4f;
+}
+
+.FollowedArtistPage .header_img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+}
+
+.FollowedArtistPage_header {
+  display: flex;
+  gap: 20px;
+  background: linear-gradient(to bottom, #1ed760, #006d5b);
+  padding: 10px;
+}
+
+.FollowedArtistPage_header h2 {
+  font-size: 70px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin-top: 25px;
+}
+
+.FollowedArtistPage_info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
