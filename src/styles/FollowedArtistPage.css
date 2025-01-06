@@ -58,3 +58,69 @@
 .FollowedArtistPage_body {
   padding-left: 20px;
 }
+
+.artist-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 2px;
+  transition: background-color 0.3s;
+}
+
+.artist-row:hover {
+  background-color: var(--spotify-hover-gray);
+  border-radius: 10px;
+}
+
+.artist-row-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.artist-row-info h4 {
+  margin-left: 20px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.artist-row-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.view-profile-btn,
+.unfollow-btn {
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  border: rgb(255, 246, 246) 1px solid;
+  margin-right: 30px;
+}
+
+.view-profile-btn {
+  background-color: var(--spotify-green);
+  color: white;
+}
+
+.view-profile-btn:hover {
+  background-color: #00ff59;
+}
+
+.unfollow-btn {
+  background-color: transparent;
+  color: var(--spotify-white);
+}
+
+.unfollow-btn:hover {
+  background-color: #b3b3b3;
+}
+
+.gap{
+  margin-bottom: 80px;
+}
