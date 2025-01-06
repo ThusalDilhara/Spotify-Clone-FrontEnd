@@ -54,3 +54,7 @@
   flex-direction: column;
   margin-top: 10px;
 }
+
+.FollowedArtistPage_body {
+  padding-left: 20px;
+}

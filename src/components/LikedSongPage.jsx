@@ -23,7 +23,6 @@ const LikedSongPage = ({updateSong}) => {
   useEffect(()=>{
     axios.get(`http://localhost:8080/api/users/getlikedSongs/${userId}`)
     .then((response) => {
-      console.log(response.data);
       setLikedSongs(response.data);
     
     
