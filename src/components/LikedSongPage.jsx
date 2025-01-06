@@ -94,11 +94,13 @@ const LikedSongPage = ({updateSong}) => {
             ))}
            </ul>          
         )  }
+         <div className="gap"></div>
+         <div className="gap"></div>
+       <Footer/>
+       <div className="gap"></div>
         </div>
        
-        <div className="gap"></div>
        
-         <Footer/>
     </div>
   )
 }

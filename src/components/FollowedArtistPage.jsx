@@ -88,7 +88,9 @@ const FollowedArtistPage = () => {
         )}
 
 <div className="gap"></div>
+<div className="gap"></div>
          <Footer/>
+         <div className="gap"></div>
       </div>
       
       
