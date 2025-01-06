@@ -75,13 +75,28 @@
   width: 100px;
 }
 
-.follow-btn:hover {
+.follow-btn:hover,.following:hover {
   background-color: #1ed760;
 }
 
-.follow-btn:active {
+.follow-btn:active, .following:hover {
   transform: scale(0.98);
 }
+
+.following{
+  background-color: transparent;
+  padding: 10px 10px;
+  margin-top: 15px;
+  font-size: 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width:100px;
+  border: rgb(255, 215, 0) 1px solid;
+  color: white;
+}
+
+
 
 .Artistsongitem {
   position: relative;

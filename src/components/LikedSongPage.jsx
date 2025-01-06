@@ -5,6 +5,7 @@ import '../styles/LikedSongPage.css'
 import SongRow from './SongRow';
 import axios from 'axios';
 import { toast } from "react-toastify";
+import { Footer } from './Footer';
 
 const LikedSongPage = ({updateSong}) => {
 
@@ -22,7 +23,6 @@ const LikedSongPage = ({updateSong}) => {
   useEffect(()=>{
     axios.get(`http://localhost:8080/api/users/getlikedSongs/${userId}`)
     .then((response) => {
-      console.log(response.data);
       setLikedSongs(response.data);
     
     
@@ -83,6 +83,7 @@ const LikedSongPage = ({updateSong}) => {
         (
            <ul>
             {songs.map((song) => (
+
               <SongRow
                   key={song.songId}
                   song={song}
@@ -93,10 +94,13 @@ const LikedSongPage = ({updateSong}) => {
             ))}
            </ul>          
         )  }
+         <div className="gap"></div>
+         <div className="gap"></div>
+       <Footer/>
+       <div className="gap"></div>
         </div>
        
-        <div className="space"></div>
-
+       
     </div>
   )
 }
