@@ -125,3 +125,16 @@ form {
     background-color: #121212;
 
   }
+
+  .error-message-form-profile-username{
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  }
+  .error-message-form-profile-password{
+    color: red;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    }
