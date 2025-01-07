@@ -69,11 +69,13 @@ const Header = () => {
         <div className="profile_menu">
           <div className="menu_item">
             <FaUser className="menu_icon" />
-            <span>My Profile</span>
+            <Link to="/profile">
+              <span>My Profile</span>
+            </Link>
           </div>
           <div className="menu_item">
             <FaCrown className="menu_icon" />
-            <span>Explore Premium</span>
+            <span>Upgrade to Premium</span>
           </div>
           <div className="menu_item">
             <FaSignOutAlt className="menu_icon" />
