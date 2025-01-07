@@ -3,10 +3,36 @@ import '../styles/Header.css';
 import { FaSearch, FaUserCircle, FaSignOutAlt, FaCrown, FaUser} from 'react-icons/fa';
 import { GoHomeFill } from "react-icons/go";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 const Header = () => {
 
   const[isMenuOpen,setIsMenuOpen]=useState(false);
+  const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  const handleInputChange = async (e) => {
+    const value = e.target.value;
+    setQuery(value);
+
+    if (value.trim() !== "") {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/search/suggestions?query=${value}`
+        );
+        setSuggestions(response.data);
+      } catch (error) {
+        console.error("Error fetching suggestions:", error);
+      }
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const handleSuggestionClick = (id, type) => {
+    console.log(`Navigate to ${type} page with ID: ${id}`);
+    // You can add navigation logic here, like using react-router's `useNavigate()`.
+  };
   
   const toggleMenu= ()=>{
     setIsMenuOpen((prev)=>!prev);
@@ -52,9 +78,27 @@ const Header = () => {
           type="text"
           placeholder="What do you want to Play?"
           className="search_input"
+          value={query}
+          onChange={handleInputChange}
         />
+       {suggestions.length > 0 && (
+        <div className="search_suggestions">
+          {suggestions.map((suggestion) => (
+            <div
+              key={suggestion.id}
+              className="suggestion_item"
+              onClick={() =>
+                handleSuggestionClick(suggestion.id, suggestion.type)
+              }
+            >
+              <span className="suggestion_name">{suggestion.name}</span>
+              <span className="suggestion_type">{suggestion.type}</span>
+            </div>
+          ))}
+        </div>
+      )}
       </div>
-      
+
       <button className='header_premium'> Explore Premium</button>
 
 
