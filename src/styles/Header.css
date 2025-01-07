@@ -90,3 +90,57 @@
   font-size: 16px;
   font-weight: bold;
 }
+.header_profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile_icon_container {
+  display: flex;
+  align-items: center;
+}
+
+.profile_icon {
+  font-size: 30px;
+  color: var(--spotify-white);
+}
+
+.profile_name {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--spotify-white);
+}
+
+.profile_menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: var(--spotify-dark-gray);
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  width: 200px;
+  padding: 10px;
+}
+
+.menu_item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  color: var(--spotify-white);
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu_item:hover {
+  background-color: var(--spotify-hover-gray);
+}
+
+.menu_icon {
+  font-size: 20px;
+}

@@ -1,10 +1,35 @@
-import React from 'react';
+import {React,useState,useEffect} from 'react';
 import '../styles/Header.css';
-import { FaSearch, FaUserCircle} from 'react-icons/fa';
+import { FaSearch, FaUserCircle, FaSignOutAlt, FaCrown, FaUser} from 'react-icons/fa';
 import { GoHomeFill } from "react-icons/go";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+
+  const[isMenuOpen,setIsMenuOpen]=useState(false);
+  
+  const toggleMenu= ()=>{
+    setIsMenuOpen((prev)=>!prev);
+
+  }
+  
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".header_profile")) {
+        closeMenu();
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+
   return (
     <header className="header">
       <div className="header_logo">
@@ -36,9 +61,28 @@ const Header = () => {
      
 
       <div className="header_profile">
+      <div className="profile_icon_container" onClick={toggleMenu}>
         <FaUserCircle className="profile_icon" />
         <span className="profile_name">Profile</span>
       </div>
+      {isMenuOpen && (
+        <div className="profile_menu">
+          <div className="menu_item">
+            <FaUser className="menu_icon" />
+            <span>My Profile</span>
+          </div>
+          <div className="menu_item">
+            <FaCrown className="menu_icon" />
+            <span>Explore Premium</span>
+          </div>
+          <div className="menu_item">
+            <FaSignOutAlt className="menu_icon" />
+            <span>Log Out</span>
+          </div>
+        </div>
+      )}
+    </div>
+      
     </header>
   );
 };
