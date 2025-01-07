@@ -54,6 +54,7 @@ const Header = () => {
           className="search_input"
         />
       </div>
+      
       <button className='header_premium'> Explore Premium</button>
 
 
