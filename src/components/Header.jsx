@@ -5,11 +5,12 @@ import { GoHomeFill } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-const Header = () => {
+const Header = ({updateSong}) => {
 
   const[isMenuOpen,setIsMenuOpen]=useState(false);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate=useNavigate();
 
   const handleInputChange = async (e) => {
@@ -23,6 +24,7 @@ const Header = () => {
         );
         console.log(response.data);
         setSuggestions(response.data);
+        setShowSuggestions(true); 
       } catch (error) {
         console.error("Error fetching suggestions:", error);
       }
@@ -35,6 +37,14 @@ const Header = () => {
     if(type=="Artist"){
         navigate(`/artist/${id}`);
     }
+    if(type=="Song"){
+       axios.get(`http://localhost:8080/api/songs/getSong/${id}`)
+       .then((response) => {
+        updateSong(response.data);
+
+         })
+    }
+    setShowSuggestions(false);
     
   };
   
@@ -85,7 +95,7 @@ const Header = () => {
           value={query}
           onChange={handleInputChange}
         />
-       {suggestions.length > 0 && (
+       {showSuggestions && suggestions.length > 0 && (
         <div className="search_suggestions">
           {suggestions.map((suggestion) => (
             <div

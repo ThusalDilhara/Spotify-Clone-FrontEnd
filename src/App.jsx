@@ -40,7 +40,9 @@ function App() {
             path="/home"
             element={
               <div>
-                <Header />
+                <Header updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }/>
                 <Sidebar />
                 <Home
                   updateSong={(song) =>
