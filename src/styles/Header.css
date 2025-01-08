@@ -63,10 +63,11 @@
   left: 0;
   width: 100%;
   background-color: white;
-  border-radius: 5px;
   z-index: 100;
   max-height: 200px;
   overflow-y: auto;
+  border-radius: 5px;
+  border: 1px solid var(--spotify-dark-gray);
 }
 
 .suggestion_item {
@@ -82,11 +83,11 @@
 }
 
 .suggestion_name {
-  font-weight: bold;
+  font-weight:700 ;
 }
 
 .suggestion_type {
-  color: #777;
+  color: #a1a1a1;
   font-size: 12px;
 }
 

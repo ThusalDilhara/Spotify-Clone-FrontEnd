@@ -2,7 +2,7 @@ import {React,useState,useEffect} from 'react';
 import '../styles/Header.css';
 import { FaSearch, FaUserCircle, FaSignOutAlt, FaCrown, FaUser} from 'react-icons/fa';
 import { GoHomeFill } from "react-icons/go";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 const Header = () => {
@@ -10,6 +10,7 @@ const Header = () => {
   const[isMenuOpen,setIsMenuOpen]=useState(false);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const navigate=useNavigate();
 
   const handleInputChange = async (e) => {
     const value = e.target.value;
@@ -31,8 +32,10 @@ const Header = () => {
   };
 
   const handleSuggestionClick = (id, type) => {
-    console.log(`Navigate to ${type} page with ID: ${id}`);
-    // You can add navigation logic here, like using react-router's `useNavigate()`.
+    if(type=="Artist"){
+        navigate(`/artist/${id}`);
+    }
+    
   };
   
   const toggleMenu= ()=>{
