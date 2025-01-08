@@ -69,6 +69,22 @@
   border-radius: 5px;
   border: 1px solid var(--spotify-dark-gray);
 }
+.search_suggestions::-webkit-scrollbar {
+  width: 12px;
+}
+
+.search_suggestions::-webkit-scrollbar-track {
+  background: var(--spotify-dark-gray);
+  
+}
+
+.search_suggestions::-webkit-scrollbar-thumb {
+  background-color: #2a2a2a;
+}
+
+.search_suggestions::-webkit-scrollbar-thumb:hover {
+  background-color: #504f4f;
+}
 
 .suggestion_item {
   padding: 8px;
