@@ -59,7 +59,9 @@ function App() {
             path="/artist/:artistId"
             element={
               <div>
-                <Header />
+               <Header updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }/>
                 <Sidebar />
                 <ArtistPage
                   updateSong={(song) =>
@@ -76,7 +78,9 @@ function App() {
             path="/likedSong"
             element={
               <div>
-              <Header />
+              <Header updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }/>
               <Sidebar />
               <LikedSongPage 
                  updateSong={(song) =>
@@ -91,7 +95,9 @@ function App() {
             path="/followedArtist"
             element={
               <div>
-              <Header />
+              <Header updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }/>
               <Sidebar />
               <FollowedArtistPage/>
                <MusicPlayer
