@@ -26,6 +26,7 @@ function App() {
               </div>
             }
           />
+          <Route path="/artistLogging" element={<LoginComponent/>} />
         </Routes>
       </BrowserRouter>
     </div>
