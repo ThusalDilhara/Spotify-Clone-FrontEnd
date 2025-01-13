@@ -1,0 +1,73 @@
+:root {
+    --spotify-green: #1db954;
+    --spotify-black: #191414;
+    --spotify-header-black: #000000;
+    --spotify-white: #ffffff;
+    --spotify-dark-gray: #121212;
+    --spotify-light-gray: #b3b3b3;
+    --spotify-hover-gray: #282828;
+    --spotify-font-primary: "Roboto", sans-serif;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--spotify-font-primary);
+    background-color: var(--spotify-header-black);
+    color: var(--spotify-white);
+  }
+
+  .artistLoggingContainer {
+    display: inline-block;
+    place-items: center;
+    margin-left: 30%;
+    background: var(--spotify-black);
+    border-radius: 8px;
+    padding: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+    width: 40%;
+  }
+
+  .artistLoggingPageImage{
+    margin-top: 50px;
+    color: #1db954;
+    text-align: center;
+  }
+
+  .artistTitle{
+    text-align: center;
+    font-size: 2em;
+  }
+
+  .artistInput {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: #615d5d solid;
+    border-color: #615d5d;
+    border-width: 0.5px;
+    border-radius: 5px;
+    width: 90%;
+    background-color: #000000;
+    color: aliceblue;
+    font-size: 20px;
+  }
+  .artistInput:focus-within {
+    border-color: #ffffff;
+  }
+  .loggingButton{
+    width: 50%;
+    background-color: var(--spotify-green);
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    color: var(--spotify-black);
+    text-align: center;
+  }
+  .itemSet01{
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: left;
+    width: 90%;
+  }

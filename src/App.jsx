@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/sideBar";
 import MusicPlayer from "./components/musicPlayer";
 import Home from "./components/Home";
+import ArtistLogging from "./components/artistLogging";
 
 function App() {
   return (
@@ -26,7 +27,9 @@ function App() {
               </div>
             }
           />
-          <Route path="/artistLogging" element={<LoginComponent/>} />
+          <Route path="/artistLogging" element={<div>
+                <ArtistLogging />
+              </div>} />
         </Routes>
       </BrowserRouter>
     </div>
