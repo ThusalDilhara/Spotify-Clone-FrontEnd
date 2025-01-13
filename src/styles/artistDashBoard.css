@@ -1,0 +1,113 @@
+:root {
+    --spotify-green: #1db954;
+    --spotify-black: #191414;
+    --spotify-header-black: #000000;
+    --spotify-white: #ffffff;
+    --spotify-dark-gray: #121212;
+    --spotify-light-gray: #b3b3b3;
+    --spotify-hover-gray: #282828;
+    --spotify-font-primary: "Roboto", sans-serif;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .spotifyIcon{
+    width: 100px;
+    height: 100px;
+  }
+  .headerbody{
+    display: flex;
+    width: 90%;
+    margin: 20px;
+  }
+  .headerIcon1{
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    padding: 20px;
+  }
+  .headerIcon2{
+    position: absolute;
+    top: 15px;
+    right: 120px;
+    padding: 20px;
+  }
+  .artistDashBoardLeftSide{
+    position: absolute;
+    justify-content: center;
+    place-items: center;
+    top: 120px;
+    left: 20px;
+    width: 30%;
+  }
+  .artistDashBoardRightSide{
+    position: absolute;
+    display: flex;
+    top: 120px;
+    right: 20px;
+    width: 67%;
+  }
+  .artistProfileImage{
+    background-size: cover;
+  background-position: center;
+    width: 200px; 
+    height: 200px; 
+    border-radius: 50%;
+    display: block; 
+    justify-content: center;
+    place-items: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--spotify-black);
+  }
+  .artistButton{
+    width: 50%;
+    background-color: var(--spotify-green);
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    color: var(--spotify-white);
+    text-align: center;
+    border: none;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+  .artistName{
+    width: 50%;
+    font-size: 50px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .artistSmallButton{
+    width: 20%;
+    background-color: var(--spotify-white);
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    color: var(--spotify-black);
+    text-align: center;
+    border: none;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+  .artistDetails{
+    width: 100%;
+  }
+  .details{
+    padding: 10px;
+    margin-top: 50px;
+    display: flex;
+    font-size: 20px;
+  }
+  .item01{
+    margin-right: 100px;
+    display: inline-block;
+    font-size: 40px;
+  }

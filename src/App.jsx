@@ -8,6 +8,7 @@ import MusicPlayer from "./components/musicPlayer";
 import Home from "./components/Home";
 import ArtistLogging from "./components/artistLogging";
 import ArtistSigning from "./components/artistSigning";
+import ArtistDashBoard from "./components/artistDashBoard";
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
           <Route path="/artistSigning" element={<div>
                 <ArtistSigning />
               </div>} />    
+          <Route path="/artistDashboard" element={<div>
+                <ArtistDashBoard />
+              </div>} />      
         </Routes>
       </BrowserRouter>
     </div>

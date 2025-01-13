@@ -8,7 +8,7 @@ function artistLogging() {
     const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/home");
+    navigate("/artistDashboard");
   };
   return (
     <>
