@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "../styles/signup.css";
 import { CiCircleChevRight } from "react-icons/ci";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [passwordField, setPasswordField] = useState("");
@@ -13,6 +15,10 @@ const SignupPage = () => {
     email: "",
     password: "",
   });
+
+  const [likedSongs, setLikedSongs] = useState([0]);
+  const [LibraryPlaylists, setLibraryPlaylists] = useState([0]);
+  const [followedArtists, setFollowedArtists] = useState([0]);
 
   // Validation functions
   const validateUsername = (username) => {
@@ -38,7 +44,7 @@ const SignupPage = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validate fields
@@ -53,12 +59,34 @@ const SignupPage = () => {
         password: passwordError,
       });
     } else {
-      // Proceed with form submission logic
-      console.log("Form submitted successfully:", {
-        username,
-        email,
-        passwordField,
-      });
+      try {
+        const response = await fetch(
+          "http://localhost:8080/api/users/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userName: username,
+              email,
+              password: passwordField,
+              likedSongs,
+              LibraryPlaylists,
+              followedArtists,
+            }),
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Signup successful", data);
+          navigate("/login");
+        } else {
+          console.error("Signup failed:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error during signup:", error);
+      }
     }
   };
 
