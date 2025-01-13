@@ -5,6 +5,7 @@ import { GoHomeFill } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
+
 const Header = ({updateSong}) => {
 
   const[isMenuOpen,setIsMenuOpen]=useState(false);
@@ -12,6 +13,29 @@ const Header = ({updateSong}) => {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate=useNavigate();
+
+
+  const handlePremiumClick = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/stripe/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to create Stripe session.");
+      }
+  
+      const { sessionUrl } = await response.json();
+      window.location.href = sessionUrl;
+    } catch (error) {
+      console.error("Error redirecting to Stripe:", error);
+      alert("Failed to start premium subscription. Please try again.");
+    }
+  };
+  
 
   const handleInputChange = async (e) => {
     const value = e.target.value;
@@ -113,7 +137,7 @@ const Header = ({updateSong}) => {
       )}
       </div>
 
-      <button className='header_premium'> Explore Premium</button>
+      <button className='header_premium' onClick={handlePremiumClick}> Explore Premium</button>
 
 
   
