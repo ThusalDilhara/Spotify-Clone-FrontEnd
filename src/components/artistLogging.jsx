@@ -2,11 +2,18 @@ import React from 'react';
 import '../styles/artistLogging.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
+import { useNavigate } from "react-router-dom";
 
 function artistLogging() {
+    const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/home");
+  };
   return (
     <>
-      <div className='artistLoggingPageImage'>
+    <div className='artistbody'>
+    <div className='artistLoggingPageImage'>
         <FontAwesomeIcon icon={faSpotify} size="4x" color="white" />
       </div>
       
@@ -33,11 +40,13 @@ function artistLogging() {
           />
         </div>
         <br /><br />
-      
-        <div className='loggingButton'><b>Log In</b></div>
+      <button onClick={handleNavigate} className='loggingButton'><b>Log In</b></button>
+        
         <br />
-        <b>Don't have an account?</b> <u>Sign up for Spotify</u>
+        <b>Don't have an account?</b> <a href="/artistSigning"><u>Sign up for Spotify</u></a>
       </div>
+    </div>
+      
     </>
   );
 }
