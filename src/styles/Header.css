@@ -37,6 +37,7 @@
   flex: 1;
   max-width: 400px;
   margin: 0 20px;
+  position: relative;
  
 }
 
@@ -56,6 +57,56 @@
   font-family: var(--spotify-font-primary);
 }
 
+.search_suggestions {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 5px;
+  border: 1px solid var(--spotify-dark-gray);
+}
+.search_suggestions::-webkit-scrollbar {
+  width: 12px;
+}
+
+.search_suggestions::-webkit-scrollbar-track {
+  background: var(--spotify-dark-gray);
+  
+}
+
+.search_suggestions::-webkit-scrollbar-thumb {
+  background-color: #2a2a2a;
+}
+
+.search_suggestions::-webkit-scrollbar-thumb:hover {
+  background-color: #504f4f;
+}
+
+.suggestion_item {
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  background-color:  var(--spotify-dark-gray);
+}
+
+.suggestion_item:hover {
+  background-color:  var(--spotify-hover-gray);
+}
+
+.suggestion_name {
+  font-weight:700 ;
+}
+
+.suggestion_type {
+  color: #a1a1a1;
+  font-size: 12px;
+}
+
 .header_premium{
   display: flex;
   align-items: center;
@@ -67,7 +118,13 @@
   padding: 8px 20px;
   font-size: 14px;
   font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
+}
+
+.header_premium:hover {
+
+  transform: scale(1.05) ;
 }
 
 .header_profile {
@@ -89,4 +146,64 @@
 .profile_name {
   font-size: 16px;
   font-weight: bold;
+}
+.header_profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile_icon_container {
+  display: flex;
+  align-items: center;
+}
+
+.profile_icon {
+  font-size: 30px;
+  color: var(--spotify-white);
+}
+
+.profile_name {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--spotify-white);
+}
+
+.profile_menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: var(--spotify-dark-gray);
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  width: 200px;
+  padding: 5px;
+}
+
+.menu_item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  color: var(--spotify-white);
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu_item:hover {
+  background-color: var(--spotify-hover-gray);
+}
+
+.menu_icon {
+  font-size: 17px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--spotify-white);
+ 
 }
