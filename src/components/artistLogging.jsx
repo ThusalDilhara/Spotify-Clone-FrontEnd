@@ -17,7 +17,7 @@ function artistLogging() {
         <FontAwesomeIcon icon={faSpotify} size="4x" color="white" />
       </div>
       
-      <div className='artistTitle'>Logging into Spotify</div>
+      <div className='artistTitle'>Logging into Spotify <br />as Artist</div>
       <br />
       <div className="artistLoggingContainer">
         <div className='itemSet01'>
