@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { useState } from "react";
 import '../styles/artistDashBoard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
 
 import backgroundImage from '../assets/Yuki.jpeg';
 import songProfileIcon from '../assets/image-1.jpeg';
 
 function artistSigning() {
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleOutsideClick = (e) => {
+    if (e.target.className === "popupOverlay") {
+      closePopup();
+    }
+  };
+
   return (
     <>
     
@@ -26,8 +44,8 @@ function artistSigning() {
       <div className='artistDashBoardLeftSide'>
         <div className='artistProfileImage'  style={{ backgroundImage: `url(${backgroundImage})` }}> </div>
         <br /><br />
-        <div className='artistButton'><b>Release A Song</b></div>
-        <div className='artistButton'><b>Add A Album</b></div>
+        <button onClick={openPopup} className='artistButton'><b>Release A Song</b></button>
+        <button className='artistButton'><b>Add A Album</b></button>
       </div>
       
       <div style={{position: "absolute", borderRight: "2px solid white",top:"40%", height: "70%", left: "30%" }}></div>
@@ -129,6 +147,60 @@ function artistSigning() {
       </div>
       
 
+{/* Release Song */}
+{isPopupOpen && (
+        <div 
+          className="popupOverlay" 
+          onClick={handleOutsideClick}
+        >
+          <div className="releaseSong">
+            
+            <h2><u >Release A Song</u></h2>
+            <div style={{display:"flex"}}>
+              <div className='addImageArea'>
+                      <FontAwesomeIcon icon={faImage} size='4x'/>
+                      <br />
+                      + Add Image
+                      </div>
+                      <div style={{ marginRight: "40px" }}></div>
+                      <div className="inputArea">
+                      <table style={{textAlign:"left", width:"100%"}}>
+                        <tbody>
+                          <tr>
+                            <td style={{ width: "30%" }}>Song Name </td>
+                            <td style={{ width: "80%" }}>: <input type="text" /></td>
+                          </tr>
+                          <tr>
+                            <td>Artist Name</td>
+                            <td>: <input type="text" /></td>
+                          </tr>
+                          <tr>
+                            <td>Album</td>
+                            <td>: <select name="" id="">
+                                            <option value="selected">Album 01</option>
+                                            <option value="">Album 02</option>
+                                          </select></td>
+                          </tr>
+                          <tr>
+                            <td>Duration</td>
+                            <td>: <input type="time" /></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      
+
+                      </div>
+            </div>
+            <div style={{display:"flex", marginTop:"50px"}}>
+            
+            <button onClick={closePopup} className='artistSmallButton'><b>Cancel</b></button>
+            <div style={{ marginRight: "40%" }}></div>
+            <button className='artistButton'><b>Release</b></button> 
+            </div>
+            
+          </div>
+        </div>
+      )}
       
     </>
   );

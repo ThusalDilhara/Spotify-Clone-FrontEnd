@@ -106,11 +106,11 @@
     }
   }
   .artistButton{
-    width: 50%;
+    width: 100%;
     background-color: var(--spotify-green);
     padding: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     border-radius: 15px;
     color: var(--spotify-white);
     text-align: center;
@@ -235,3 +235,84 @@
   .star:hover{
     transform: scale(1.2);
   }
+
+
+
+
+
+  .popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .releaseSong {
+    background: var(--spotify-black);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    min-width: 50%;
+  }
+  
+  .popupContent h2 {
+    margin-top: 0;
+    font-size: 24px;
+    margin-bottom: 50px;
+  }
+  
+  .popupContent p {
+    font-size: 16px;
+    margin: 20px 0;
+  }
+  .addImageArea{
+    width: 150px; 
+    height: 120px; 
+    border: 3px solid #b3b3b3 ; 
+    border-radius: 50%;
+    display: block; 
+    justify-content: center;
+    place-items: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 30px;
+    background-color: var(--spotify-black);
+    }
+    .addImageArea :hover{
+      color: #b3b3b3;
+    }
+    .inputArea{
+      width: 70%;
+      text-align: left;
+      font-size: 20px;
+    }
+    .inputArea input{
+      border: #615d5d solid;
+      border-color: #615d5d;
+      border-width: 0.5px;
+      border-radius: 5px;
+      width: 90%;
+      background-color: #000000;
+      color: aliceblue;
+      font-size: 20px;
+    }
+    .inputArea select{
+      padding: 0px;
+      border: #615d5d solid;
+      border-color: #615d5d;
+      border-width: 0.5px;
+      border-radius: 5px;
+      width: 90%;
+      background-color: #000000;
+      color: aliceblue;
+      font-size: 18px;
+      padding: 2px;
+    }
+  
