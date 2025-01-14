@@ -1,0 +1,86 @@
+.main-row{
+    
+    display: flex;
+    margin-top: 50px;
+    font-size: 15px;
+}
+
+.main-row .column1{
+    margin-left: 100px;
+}
+.main-row .column1 ul{
+    list-style: none;
+    margin-left: -40px;
+    
+}
+.main-row .column1 ul li{
+    margin-top: 10px;
+    color: rgb(130, 129, 127);
+}
+.main-row .column1 ul li:hover{
+    text-decoration: underline;
+    color: rgb(255, 255, 254);
+}
+.main-row .column1 ul li.no-hover:hover {
+    text-decoration: none;
+    color: white;
+  }
+
+
+.main-row .column ul{
+    list-style: none;
+    margin-left: -40px;
+    
+}
+.main-row .column ul li{
+    margin-top: 10px;
+    color: rgb(130, 129, 127);
+}
+.main-row .column ul li:hover{
+    text-decoration: underline;
+    color: rgb(255, 255, 254);
+}
+.main-row .column ul li.no-hover:hover {
+    text-decoration: none;
+    color: white;
+  }
+  
+.main-row .footer-icons{
+    margin-left: 170px;
+    align-items: end;
+}
+.main-row .footer-icons img{
+    background-color: white;
+    margin: 10px;
+   border-radius: 50%;
+   background-color: rgb(70, 72, 71);
+}
+.main-row .footer-icons img:hover{
+    background-color: white;
+    border: none;
+}
+
+.horizontal-line{
+    margin-left: 0;
+}
+
+.horizontal-phrases{
+    font-size: 15px;
+    
+    display: flex;
+    gap: 25px;
+    color: rgb(130, 129, 127);
+}
+.horizontal-phrases p:hover{
+    color: rgb(255, 255, 255);
+}
+
+.horizontal-phrases .sp{
+   margin-left: 320px;
+}
+
+.horizontal-phrases .sp:hover{
+    
+    color: rgb(130, 129, 127);
+ }
+ 

@@ -1,0 +1,242 @@
+.artist {
+  position: absolute;
+  top: 70px;
+  left: 295px;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  background-color: var(--spotify-dark-gray);
+  color: var(--spotify-white);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.artist::-webkit-scrollbar {
+  width: 12px;
+}
+
+.artist::-webkit-scrollbar-track {
+  background: var(--spotify-dark-gray);
+  border-radius: 6px;
+}
+
+.artist::-webkit-scrollbar-thumb {
+  background-color: #2a2a2a;
+}
+
+.artist::-webkit-scrollbar-thumb:hover {
+  background-color: #504f4f;
+}
+
+
+.artist-info {
+  display: flex;
+  gap: 10px;
+  background: linear-gradient(to bottom, #1db954, #191414);
+}
+
+.artist-info img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.artist-info h2 {
+  font-size: 70px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0;
+}
+.artist-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.artist-stats h3 {
+  font-size: 20px;
+  color: #b3b3b3;
+  margin: 0;
+}
+.follow-btn {
+  background-color: transparent;
+  color: white;
+  border: rgb(255, 255, 255) 1px solid;
+  padding: 10px 20px;
+  margin-top: 15px;
+  font-size: 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100px;
+}
+
+.follow-btn:hover,.following:hover {
+  background-color: #1ed760;
+}
+
+.follow-btn:active, .following:hover {
+  transform: scale(0.98);
+}
+
+.following{
+  background-color: transparent;
+  padding: 10px 10px;
+  margin-top: 15px;
+  font-size: 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width:100px;
+  border: rgb(255, 215, 0) 1px solid;
+  color: white;
+}
+
+
+
+.Artistsongitem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 5px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+.Artistsongitem:hover {
+  background-color: #2a2a2a;
+}
+
+.Artistsonginfo {
+  display: flex;
+
+}
+
+.Artistsongimage {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.Artistsongdetails {
+
+  display: flex;
+  flex-direction: row;
+  
+  
+}
+
+.Artistsongname {
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 5px;
+  margin-left: 20px;
+}
+
+.Artistsongname:hover {
+  text-decoration: underline;
+}
+
+
+.Artistsongactions {
+  position: absolute;
+  right: 40px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.play-btn,
+.like-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 22px;
+  margin-right: 60px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.play-btn:hover,
+.like-btn:hover {
+  color: #97b91d; 
+}
+
+.play-icon,
+.like-icon {
+  transition: transform 0.2s ease;
+}
+
+.play-btn:hover .play-icon,
+.like-btn:hover .like-icon {
+  transform: scale(1.2);
+}
+
+
+.space {
+  margin-bottom: 80px;
+}
+
+.artist-songs{
+  margin-left: 10px;
+}
+
+.artist-songs h3{
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+.like-btn-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.play-btn-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-tooltip {
+  visibility: hidden;
+  background-color: #000000; 
+  color: #fff; 
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 120%; 
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none; 
+  font-weight: 500;
+}
+
+.like-btn-wrapper:hover .custom-tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px); 
+}
+
+.play-btn-wrapper:hover .custom-tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.liked{
+  color: #97b91d;
+}

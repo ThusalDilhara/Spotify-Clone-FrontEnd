@@ -65,7 +65,8 @@ function artistSigning() {
         </div>
         
 
-        </div>
+        </div><br />
+        <div className='songCard'>test</div>
         
       </div>
       

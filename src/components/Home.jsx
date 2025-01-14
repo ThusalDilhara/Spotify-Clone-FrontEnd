@@ -10,6 +10,8 @@ import image4 from '../assets/image-4.jpg';
 import image5 from '../assets/image-5.jpg';
 import image6 from '../assets/image-6.jpg';
 import SongItem from './SongItem';
+import ArtistItem from './artistItem';
+import { Footer } from './Footer';
 
 
 const albums = [
@@ -51,21 +53,32 @@ const albums = [
   },
 ];
 
-const Home = () => {
+const Home = ({ updateSong }) => {
 
   const [songs, setSongs] = useState([]); 
+  const [artists, setArtists] = useState([]);
 
   useEffect(() => {
     // Fetch song details from the backend
-    fetch("http://localhost:8080/api/songs/getdetails")
-      .then((response) => response.json())
-      .then((data) =>{
-                      console.log(data); 
-                      setSongs(data);}) // Set the fetched data to state
+     axios.get("http://localhost:8080/api/songs/getdetails")
+     
+      .then((response) =>{
+                     
+                      setSongs(response.data);})
       .catch((error) => console.error('Error fetching songs:', error));
   }, []); // Empty dependency array to run this effect only once
  
-  
+  useEffect(() => {
+    // Fetch artist details from the backend
+    axios
+       .get("http://localhost:8080/api/artist/getAllArtists")
+        .then((response) => {
+          setArtists(response.data); 
+        })
+      .catch((error) => {
+       console.error('Error fetching artists:', error);
+       });
+  }, []); 
   
   return (
     <> 
@@ -86,15 +99,16 @@ const Home = () => {
               SongName={song.songName} 
               artistName={song.artist}
               image={song.imageUrl}
+              onClick={() => updateSong(song)}
             />
           ))}
 
      </div>
     
-     <h3>Favourite Artists</h3>
-     <div className='albumItem'>
-        {albums.map((album,index)=>(
-          <SongItem key={index} SongName={album.title} artistName={album.desc}  image={album.image}/>         
+     <h3>Favourite Artists</h3>  
+     <div className='albumItem' >
+        {artists.map((artist,index)=>(   //backend connection
+          <ArtistItem key={index} ArtistName={artist.artistName} artist="artist"  image={artist.artistImage} artistId={artist.artistId}/>         
         ))}
 
      </div>
@@ -102,6 +116,12 @@ const Home = () => {
      <div className='space'>
 
      </div>
+
+     <Footer/>
+     <div className='space'>
+
+     </div>
+
 
     
     </div>
