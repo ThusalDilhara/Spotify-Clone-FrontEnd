@@ -10,12 +10,14 @@ import Header from "./components/Header";
 import Sidebar from "./components/sideBar";
 import MusicPlayer from "./components/musicPlayer";
 import Home from "./components/Home";
+import ArtistLogging from "./components/artistLogging";
+import ArtistSigning from "./components/artistSigning";
+import ArtistDashBoard from "./components/artistDashBoard";
 import { Footer } from "./components/Footer";
 import ArtistPage from "./components/ArtistPage";
 import LikedSongPage from "./components/LikedSongPage";
 import Profile from "./components/Profile";
 import FollowedArtistPage from "./components/FollowedArtistPage";
-
 
 function App() {
   const updateSongRef = useRef(null);
@@ -165,6 +167,15 @@ function App() {
               </div>
             }
           />
+          <Route path="/artistLogging" element={<div>
+                <ArtistLogging />
+              </div>} />
+          <Route path="/artistSigning" element={<div>
+                <ArtistSigning />
+              </div>} />    
+          <Route path="/artistDashboard" element={<div>
+                <ArtistDashBoard />
+              </div>} />      
         </Routes>
       </BrowserRouter>
     </div>
