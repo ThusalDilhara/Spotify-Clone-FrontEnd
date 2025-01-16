@@ -25,10 +25,12 @@ const albums = [
 const Home = ({ updateSong }) => {
   const [songs, setSongs] = useState([]);
   const [artists, setArtists] = useState([]);
+  const userId = "6778c203c085eb28fe42fa69";
   const [userHistory, setUserHistory] = useState(() => {
-    const savedHistory = localStorage.getItem('userHistory');
+    const savedHistory = localStorage.getItem(`userHistory_${userId}`);
     return savedHistory ? JSON.parse(savedHistory) : [];
   });
+ 
 
   useEffect(() => {
   
@@ -46,29 +48,52 @@ const Home = ({ updateSong }) => {
       .catch((error) => console.error('Error fetching artists:', error));
   }, []);
 
+
+
   const handleUpdateSong = (song) => {
     updateSong(song); // Call the parent updateSong function
-
+  
     // Update user history
     setUserHistory((prevHistory) => {
-      const isAlreadyInHistory = prevHistory.some((item) => item.id === song.id);
+      console.log('Current Song:', song);
+      console.log('Previous History:', prevHistory);
+  
+      // Check if the song is already in history
+      const isAlreadyInHistory = prevHistory.some((item) => item.songId === song.songId);
+      
       if (!isAlreadyInHistory) {
-        const updatedHistory = [song, ...prevHistory].slice(0, 5); // Keep only the last 5 played songs
-        localStorage.setItem('userHistory', JSON.stringify(updatedHistory));
-        console.log(JSON.stringify(updatedHistory)) ;// Save to localStorage
-        return updatedHistory;
+        // Add the new song to the beginning of the history
+        const updatedHistory = [song, ...prevHistory];
+        console.log('Updated History:', updatedHistory);
+  
+        // Limit the history to the last 5 songs
+        const limitedHistory = updatedHistory.slice(0, 5);
+  
+        // Save to localStorage
+        localStorage.setItem(`userHistory_${userId}`, JSON.stringify(limitedHistory));
+
+  
+        return limitedHistory;
       }
+  
       return prevHistory;
     });
+  
+   
   };
+  
+  
 
   return (
     <>
       <Navbar />
       <div className="home">
         {userHistory.length > 0 && (
-          <>
+          <div>
+            <div className='recentlyPlayed'>
             <h3>Recently Played</h3>
+            <h5>clear history</h5>
+            </div>
             <div className="albumItem">
               {userHistory.map((song, index) => (
                 <SongItem
@@ -80,7 +105,7 @@ const Home = ({ updateSong }) => {
                 />
               ))}
             </div>
-          </>
+          </div>
         )}
 
         <h3>Featured Charts</h3>

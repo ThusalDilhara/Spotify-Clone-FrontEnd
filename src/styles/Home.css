@@ -44,6 +44,13 @@ body {
   text-decoration: underline;
 }
 
+.recentlyPlayed {
+  display: flex;
+  gap: 10px;
+  
+  
+}
+
 .albumItem {
   display: flex;
   gap: 10px;
