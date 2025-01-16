@@ -81,6 +81,12 @@ const Home = ({ updateSong }) => {
   
    
   };
+
+  const clearHistory = () => {
+
+    localStorage.removeItem(`userHistory_${userId}`);
+    setUserHistory([]);
+  }
   
   
 
@@ -92,7 +98,7 @@ const Home = ({ updateSong }) => {
           <div>
             <div className='recentlyPlayed'>
             <h3>Recently Played</h3>
-            <h5>clear history</h5>
+            <h5 className='clearhistory' onClick={clearHistory}>clear history</h5>
             </div>
             <div className="albumItem">
               {userHistory.map((song, index) => (
