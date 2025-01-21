@@ -25,11 +25,17 @@ const albums = [
 const Home = ({ updateSong }) => {
   const [songs, setSongs] = useState([]);
   const [artists, setArtists] = useState([]);
-  const userId = "6778c203c085eb28fe42fa69";
+ 
+  const userId = JSON.parse(localStorage.getItem('user')).userId;
+  
+
+
   const [userHistory, setUserHistory] = useState(() => {
     const savedHistory = localStorage.getItem(`userHistory_${userId}`);
     return savedHistory ? JSON.parse(savedHistory) : [];
   });
+
+  
  
 
   useEffect(() => {

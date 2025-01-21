@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -18,12 +18,11 @@ import ArtistPage from "./components/ArtistPage";
 import LikedSongPage from "./components/LikedSongPage";
 import Profile from "./components/Profile";
 import FollowedArtistPage from "./components/FollowedArtistPage";
-import { useAuth } from "./auth/authContext"; // Import the useAuth hook
 
 function App() {
   const updateSongRef = useRef(null);
 
-  // Success page for payments
+ 
   const Success = () => {
     useEffect(() => {
       toast.success("Payment Successful! Enjoy Premium Features!", {
@@ -44,7 +43,7 @@ function App() {
     );
   };
 
-  // Cancel page for payments
+ 
   const Cancel = () => {
     useEffect(() => {
       toast.error("Payment Cancelled. Please Try Again!", {
@@ -65,12 +64,6 @@ function App() {
     );
   };
 
-  // Protected Route Component
-  const ProtectedRoute = ({ element }) => {
-    const { isAuthenticated } = useAuth(); // Check if the user is authenticated
-    return isAuthenticated ? element : <Navigate to="/login" />;
-  };
-
   return (
     <div className="App">
       <ToastContainer
@@ -86,120 +79,103 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          {/* Public Routes */}
           <Route path="/" element={<SignupComponent />} />
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/footer" element={<Footer />} />
+          <Route path="/profile" element={<Profile />} />
+
           <Route path="/success" element={<Success />} />
           <Route path="/cancel" element={<Cancel />} />
 
-          {/* Protected Routes */}
-          <Route
-            path="/profile"
-            element={<ProtectedRoute element={<Profile />} />}
-          />
           <Route
             path="/home"
             element={
-              <ProtectedRoute
-                element={
-                  <div>
-                    <Header
-                      updateSong={(song) =>
-                        updateSongRef.current && updateSongRef.current(song)
-                      }
-                    />
-                    <Sidebar />
-                    <Home
-                      updateSong={(song) =>
-                        updateSongRef.current && updateSongRef.current(song)
-                      }
-                    />
-                    <MusicPlayer
-                      updateSong={(fn) => (updateSongRef.current = fn)}
-                    />
-                  </div>
-                }
-              />
+              <div>
+                <Header
+                  updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }
+                />
+                <Sidebar />
+                <Home
+                  updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }
+                />
+                <MusicPlayer
+                  updateSong={(fn) => (updateSongRef.current = fn)}
+                />
+              </div>
             }
           />
           <Route
             path="/artist/:artistId"
             element={
-              <ProtectedRoute
-                element={
-                  <div>
-                    <Header
-                      updateSong={(song) =>
-                        updateSongRef.current && updateSongRef.current(song)
-                      }
-                    />
-                    <Sidebar />
-                    <ArtistPage
-                      updateSong={(song) =>
-                        updateSongRef.current && updateSongRef.current(song)
-                      }
-                    />
-                    <MusicPlayer
-                      updateSong={(fn) => (updateSongRef.current = fn)}
-                    />
-                  </div>
-                }
-              />
+              <div>
+                <Header
+                  updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }
+                />
+                <Sidebar />
+                <ArtistPage
+                  updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }
+                />
+                <MusicPlayer
+                  updateSong={(fn) => (updateSongRef.current = fn)}
+                />
+              </div>
             }
           />
           <Route
             path="/likedSong"
             element={
-              <ProtectedRoute
-                element={
-                  <div>
-                    <Header
-                      updateSong={(song) =>
-                        updateSongRef.current && updateSongRef.current(song)
-                      }
-                    />
-                    <Sidebar />
-                    <LikedSongPage
-                      updateSong={(song) =>
-                        updateSongRef.current && updateSongRef.current(song)
-                      }
-                    />
-                    <MusicPlayer
-                      updateSong={(fn) => (updateSongRef.current = fn)}
-                    />
-                  </div>
-                }
-              />
+              <div>
+                <Header
+                  updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }
+                />
+                <Sidebar />
+                <LikedSongPage
+                  updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }
+                />
+                <MusicPlayer
+                  updateSong={(fn) => (updateSongRef.current = fn)}
+                />
+              </div>
             }
           />
           <Route
             path="/followedArtist"
             element={
-              <ProtectedRoute
-                element={
-                  <div>
-                    <Header
-                      updateSong={(song) =>
-                        updateSongRef.current && updateSongRef.current(song)
-                      }
-                    />
-                    <Sidebar />
-                    <FollowedArtistPage />
-                    <MusicPlayer
-                      updateSong={(fn) => (updateSongRef.current = fn)}
-                    />
-                  </div>
-                }
-              />
+              <div>
+                <Header
+                  updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }
+                />
+                <Sidebar />
+                <FollowedArtistPage />
+                <MusicPlayer
+                  updateSong={(fn) => (updateSongRef.current = fn)}
+                />
+              </div>
             }
           />
-          <Route path="/artistLogging" element={<ArtistLogging />} />
-          <Route path="/artistSigning" element={<ArtistSigning />} />
-          <Route
-            path="/artistDashboard"
-            element={<ProtectedRoute element={<ArtistDashBoard />} />}
-          />
+          <Route path="/artistLogging" element={<div>
+                <ArtistLogging />
+              </div>} />
+          <Route path="/artistSigning" element={<div>
+                <ArtistSigning />
+              </div>} />    
+          <Route path="/artistDashboard" element={<div>
+                <ArtistDashBoard />
+              </div>} />      
         </Routes>
       </BrowserRouter>
     </div>

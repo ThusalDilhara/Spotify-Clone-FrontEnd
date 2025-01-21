@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import "../styles/Login.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const LoginComponent = () => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
-
-  const [email, setEmail] = useState("");
   const [errors, setErrors] = useState({
     email: "",
+    password: "",
   });
+  const [loginError, setLoginError] = useState("");
+  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -18,30 +21,45 @@ const LoginComponent = () => {
     return "";
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validate email
     const emailError = validateEmail(email);
-
     if (emailError) {
-      setErrors({
-        ...errors,
-        email: emailError,
-      });
+      setErrors((prev) => ({ ...prev, email: emailError }));
       return;
     }
 
-    setErrors({
-      ...errors,
-      email: "",
-    });
+    setErrors((prev) => ({ ...prev, email: "" }));
 
-    // Proceed with form submission
-    console.log("Form submitted successfully:", {
-      email,
-      password,
-    });
+    try {
+      const response = await fetch("http://localhost:8080/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setLoginError(errorData.message || "Invalid credentials");
+        return;
+      }
+
+      const user = await response.json();
+      console.log("Login successful:", user);
+
+      // Save user info (e.g., token) to localStorage
+      localStorage.setItem("user", JSON.stringify(user));
+
+      // Navigate to the home page
+      navigate("/home");
+    } catch (error) {
+      console.error("Login failed:", error);
+      setLoginError("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -108,6 +126,11 @@ const LoginComponent = () => {
               {visible ? <FaEye /> : <FaEyeSlash />}
             </div>
           </div>
+
+          <div className="error-message-form-login">
+            {loginError && <div className="error-message">{loginError}</div>}
+          </div>
+
           <button type="submit" className="login-button">
             Log In
           </button>
