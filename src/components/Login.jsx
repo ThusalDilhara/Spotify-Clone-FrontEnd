@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import "../styles/Login.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/authContext";
+
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+  const { login } = useAuth();
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -50,7 +53,7 @@ const LoginComponent = () => {
 
       const user = await response.json();
       console.log("Login successful:", user);
-
+      login(user); 
       // Save user info (e.g., token) to localStorage
       localStorage.setItem("user", JSON.stringify(user));
 
