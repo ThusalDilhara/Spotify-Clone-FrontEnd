@@ -51,7 +51,8 @@ const Profile = () => {
   return (
     <div className="main-container">
       <div>
-        <button className="backButton">
+        <button className="backButton" onClick={() => window.history.back()}>
+          
           <img src={backButton} alt="backButton" />
         </button>
       </div>
