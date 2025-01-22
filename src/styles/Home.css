@@ -44,6 +44,17 @@ body {
   text-decoration: underline;
 }
 
+.recentlyPlayed {
+  display: flex;
+  gap: 10px;
+  
+  
+}
+.clearhistory{
+  margin-top: 50px;
+  margin-left: 750px;
+  cursor: pointer;
+}
 .albumItem {
   display: flex;
   gap: 10px;

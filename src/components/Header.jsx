@@ -4,6 +4,7 @@ import { FaSearch, FaUserCircle, FaSignOutAlt, FaCrown, FaUser} from 'react-icon
 import { GoHomeFill } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { useAuth } from "../auth/authContext";
 
 
 const Header = ({updateSong}) => {
@@ -13,8 +14,15 @@ const Header = ({updateSong}) => {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate=useNavigate();
+  const { logout } = useAuth();
 
 
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
+  
   const handlePremiumClick = async () => {
     try {
       const response = await fetch("http://localhost:8080/api/stripe/create-checkout-session", {
@@ -162,7 +170,7 @@ const Header = ({updateSong}) => {
           </div>
           <div className="menu_item">
             <FaSignOutAlt className="menu_icon" />
-            <span>Log Out</span>
+            <span onClick={handleLogout}>Log Out</span>
           </div>
         </div>
       )}
