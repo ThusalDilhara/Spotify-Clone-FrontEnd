@@ -20,6 +20,8 @@ import Profile from "./components/Profile";
 import FollowedArtistPage from "./components/FollowedArtistPage";
 import ProtectedRoute from "./auth/protectedRoute";
 
+
+
 function App() {
   const updateSongRef = useRef(null);
 

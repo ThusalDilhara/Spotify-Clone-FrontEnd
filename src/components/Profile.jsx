@@ -63,9 +63,9 @@ const Profile = () => {
             fontSize: "small",
           }}
         >
-          User Name
+      
         </p>
-        <p>get the user name from the backend</p>
+       
       </div>
       <div>
         <form onSubmit={handleSubmit}>
@@ -117,12 +117,7 @@ const Profile = () => {
 
           <div className="form-group">
             <label>Subscription Type</label>
-            <div className="dob">
-              <select>
-                <option>Normal</option>
-                <option>Premium</option>
-              </select>
-            </div>
+            
           </div>
           <div className="button-container">
             <button className="button-delete" type="">

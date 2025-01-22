@@ -4,13 +4,15 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // To handle initial loading state
 
+  // Restore user from localStorage when the app loads
   useEffect(() => {
-    // Check if a user is stored in localStorage
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setUser(storedUser);
+      setUser(JSON.parse(storedUser)); // Restore user state
     }
+    setLoading(false); // Mark loading as false after restoring
   }, []);
 
   const login = (userData) => {
@@ -24,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
