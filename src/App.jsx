@@ -18,6 +18,7 @@ import ArtistPage from "./components/ArtistPage";
 import LikedSongPage from "./components/LikedSongPage";
 import Profile from "./components/Profile";
 import FollowedArtistPage from "./components/FollowedArtistPage";
+import ProtectedRoute from "./auth/protectedRoute";
 
 function App() {
   const updateSongRef = useRef(null);
@@ -82,7 +83,11 @@ function App() {
           <Route path="/" element={<SignupComponent />} />
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/footer" element={<Footer />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={
+                <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            } />
 
           <Route path="/success" element={<Success />} />
           <Route path="/cancel" element={<Cancel />} />
@@ -90,22 +95,24 @@ function App() {
           <Route
             path="/home"
             element={
-              <div>
-                <Header
-                  updateSong={(song) =>
-                    updateSongRef.current && updateSongRef.current(song)
-                  }
-                />
-                <Sidebar />
-                <Home
-                  updateSong={(song) =>
-                    updateSongRef.current && updateSongRef.current(song)
-                  }
-                />
-                <MusicPlayer
-                  updateSong={(fn) => (updateSongRef.current = fn)}
-                />
-              </div>
+              <ProtectedRoute>
+                <div>
+                  <Header
+                    updateSong={(song) =>
+                      updateSongRef.current && updateSongRef.current(song)
+                    }
+                  />
+                  <Sidebar />
+                  <Home
+                    updateSong={(song) =>
+                      updateSongRef.current && updateSongRef.current(song)
+                    }
+                  />
+                  <MusicPlayer
+                    updateSong={(fn) => (updateSongRef.current = fn)}
+                  />
+                </div>
+              </ProtectedRoute>
             }
           />
           <Route
