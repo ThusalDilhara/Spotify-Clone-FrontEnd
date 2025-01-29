@@ -13,7 +13,7 @@ const FollowedArtistPage = () => {
   const[data,setData]=useState([]);
   const[artist,setArtist]=useState([]);
   const navigate=useNavigate();
-  const userId = "6778c203c085eb28fe42fa69";
+  const userId = JSON.parse(localStorage.getItem('user')).userId;
 
   useEffect(()=>
   {

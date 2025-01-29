@@ -12,7 +12,7 @@ const LikedSongPage = ({updateSong}) => {
   const[likedSongs, setLikedSongs] = useState([]);
   const [songs, setSongs] = useState([]);
   const[data,setData]=useState([]);
-  const userId = "6778c203c085eb28fe42fa69";
+  const userId = JSON.parse(localStorage.getItem('user')).userId;
   
   const playSong = (song) => {
     if (updateSong) {
