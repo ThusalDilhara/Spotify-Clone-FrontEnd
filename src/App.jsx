@@ -19,13 +19,11 @@ import LikedSongPage from "./components/LikedSongPage";
 import Profile from "./components/Profile";
 import FollowedArtistPage from "./components/FollowedArtistPage";
 import ProtectedRoute from "./auth/protectedRoute";
-
-
+import Support from "./components/Support";
 
 function App() {
   const updateSongRef = useRef(null);
 
- 
   const Success = () => {
     useEffect(() => {
       toast.success("Payment Successful! Enjoy Premium Features!", {
@@ -46,7 +44,6 @@ function App() {
     );
   };
 
- 
   const Cancel = () => {
     useEffect(() => {
       toast.error("Payment Cancelled. Please Try Again!", {
@@ -84,12 +81,16 @@ function App() {
         <Routes>
           <Route path="/" element={<SignupComponent />} />
           <Route path="/login" element={<LoginComponent />} />
+          <Route path="/support" element={<Support />} />
           <Route path="/footer" element={<Footer />} />
-          <Route path="/profile" element={
-                <ProtectedRoute>
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
                 <Profile />
               </ProtectedRoute>
-            } />
+            }
+          />
 
           <Route path="/success" element={<Success />} />
           <Route path="/cancel" element={<Cancel />} />
@@ -176,15 +177,30 @@ function App() {
               </div>
             }
           />
-          <Route path="/artistLogging" element={<div>
+          <Route
+            path="/artistLogging"
+            element={
+              <div>
                 <ArtistLogging />
-              </div>} />
-          <Route path="/artistSigning" element={<div>
+              </div>
+            }
+          />
+          <Route
+            path="/artistSigning"
+            element={
+              <div>
                 <ArtistSigning />
-              </div>} />    
-          <Route path="/artistDashboard" element={<div>
+              </div>
+            }
+          />
+          <Route
+            path="/artistDashboard"
+            element={
+              <div>
                 <ArtistDashBoard />
-              </div>} />      
+              </div>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
