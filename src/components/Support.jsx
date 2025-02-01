@@ -16,7 +16,7 @@ function Support() {
     e.preventDefault();
     const subject = `Support Request: ${selectedOption}`;
     const body = `Email: ${email}%0D%0A%0D%0AMessage: ${message}`;
-    window.location.href = `mailto:yourdefaultemail@example.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:spotifysupport@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
