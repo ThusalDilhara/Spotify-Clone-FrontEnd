@@ -43,7 +43,7 @@ function Support() {
                 <option value="Payment Issues">Payment Issues</option>
                 <option value="Technical Issues">Technical Issues</option>
                 <option value="Feedback">Feedback</option>
-                <option value="Other">Other</option>
+                <option value="Other">Other Issues</option>
               </select>
             </div>
 
