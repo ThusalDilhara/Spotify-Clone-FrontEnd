@@ -33,7 +33,7 @@ function artistSigning() {
           <input
             type="text"
             className='artistInput'
-            placeholder="Email"
+            placeholder="Name"
             required
           />
         </div>

@@ -160,6 +160,23 @@
     font-size: 15px;
     transition: transform 0.3s ease-in-out;
   }
+  .artistSmallButtonRed{
+    width: 50%;
+    background-color: red;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    color: black;
+    text-align: center;
+    border: none;
+    margin-top: 10px;
+    font-size: 15px;
+    transition: transform 0.3s ease-in-out;
+  }
+  .artistSmallButtonRed:hover{
+    transform: scale(1.03);
+  }
   .artistSmallButton:hover{
     transform: scale(1.03);
   }
@@ -237,7 +254,17 @@
   }
 
 
-
+  .error-message-form-login{
+    margin-bottom: 10px;
+   
+  }
+  
+  .error-message-form-login-email{
+    color: red;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: -15px;
+  }
 
 
   .popupOverlay {
@@ -259,7 +286,7 @@
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
-    min-width: 50%;
+    min-width: 60%;
   }
   
   .popupContent h2 {

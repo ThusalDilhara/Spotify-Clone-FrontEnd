@@ -6,34 +6,59 @@ import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
-import backgroundImage from '../assets/Yuki.jpeg';
+//import backgroundImage from '../assets/Yuki.jpeg';
 import songProfileIcon from '../assets/image-1.jpeg';
 
 function artistSigning() {
 
+  const artist = JSON.parse(localStorage.getItem("artist"));
+  const backgroundImage = `${artist.artistImage}`;
+
+  const navigate = useNavigate();
+
   const [isReleaseSongOpen, setIsReleaseSongOpen] = useState(false);
   const [isAddAlbumOpen, setIsAddAlbumOpen] = useState(false);
+  const [isArtistProfileOpen, setIsOpenArtistProfile] = useState(false);
 
+
+  //handle Release song UI
   const openReleaseSong = () => {
     setIsReleaseSongOpen(true);
   };
-  const openAddAlbum= () => {
-    setIsAddAlbumOpen(true);
-  };
-
   const closeReleaseSong = () => {
     setIsReleaseSongOpen(false);
+  };
+
+   //handle Artist Profile UI
+   const openArtistProfile = () => {
+    setIsOpenArtistProfile(true);
+  };
+  const closeArtistProfile = () => {
+    setIsOpenArtistProfile(false);
+  };
+
+
+ //handle Add Album UI
+  const openAddAlbum= () => {
+    setIsAddAlbumOpen(true);
   };
   const closeAddAlbum = () => {
     setIsAddAlbumOpen(false);
   };
 
+  //handle click outside 
   const handleOutsideClick = (e) => {
     if (e.target.className === "popupOverlay") {
       closeReleaseSong();
       closeAddAlbum();
+      closeArtistProfile();
     }
+  };
+
+  const goToLoggingPage = () => {
+    navigate("/artistLogging");
   };
 
   return (
@@ -46,7 +71,7 @@ function artistSigning() {
       </div>
       <h2>Welcome into the Artist DashBoard..!</h2>
       <FontAwesomeIcon icon={faBell} size='2x' className='headerIcon2' />
-      <FontAwesomeIcon icon={faUserCircle} size="3x" className='headerIcon1' style={{ color: "#ffffff" }} />
+      <FontAwesomeIcon onClick={openArtistProfile} icon={faUserCircle} size="3x" className='headerIcon1' style={{ color: "#ffffff" }} />
       </div>
 
       <div className='artistDashBoardLeftSide'>
@@ -61,7 +86,7 @@ function artistSigning() {
       <div className='artistDashBoardRightSide'>
 
         <div style={{display:"block"}}>
-        <div className='artistName'>Yuki <br />Navarathne</div>
+        <div className='artistName'> {artist.artistName} <br /></div>
         <span style={{display:"flex", color:"black"}}>
         <button className='artistSmallButton'><b>Song</b></button>
         <div style={{ marginRight: "20px" }}></div>
@@ -248,6 +273,58 @@ function artistSigning() {
             <button onClick={closeAddAlbum} className='artistSmallButton'><b>Cancel</b></button>
             <div style={{ marginRight: "40%" }}></div>
             <button className='artistButton'><b>Create</b></button> 
+            </div>
+            
+          </div>
+        </div>
+      )}
+
+      {/* Artist Profile */}
+      {isArtistProfileOpen && (
+        <div 
+          className="popupOverlay" 
+          onClick={handleOutsideClick}
+        >
+          <div className="releaseSong">
+            
+            <h2><u >Artist Profile</u></h2>
+            <div style={{display:"flex"}}>
+            <div className='artistProfileImage'  style={{ backgroundImage: `url(${backgroundImage})` }}> </div>
+                      <div style={{ marginRight: "40px" }}></div>
+                      <div className="inputArea">
+                      <table style={{textAlign:"left", width:"100%"}}>
+                        <tbody>
+                          <tr>
+                            <td style={{ width: "30%" }}>Name </td>
+                            <td style={{ width: "80%" }}>: <input placeholder={artist.artistName} type="text" /></td>
+                          </tr>
+                          <tr>
+                            <td>Email</td>
+                            <td>: <input placeholder={artist.email} type="text" /></td>
+                          </tr>
+                          <tr>
+                            <td>Password</td>
+                            <td>: <input placeholder={artist.password} type="text" /></td>
+                          </tr>
+                          <tr>
+                            <td>New Password</td>
+                            <td>: <input type="text" /></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      
+
+                      </div>
+            </div>
+            <div style={{display:"flex", marginTop:"50px"}}>
+            
+            <button onClick={goToLoggingPage} className='artistSmallButton'><b>Sign Out</b></button>
+            <div style={{ marginRight: "5%" }}></div>
+            <button onClick={goToLoggingPage} className='artistSmallButtonRed'><b>Delete Account</b></button>
+            <div style={{ marginRight: "5%" }}></div>
+            <button onClick={goToLoggingPage} className='artistSmallButton'><b>Update</b></button>
+            <div style={{ marginRight: "5%" }}></div>
+            <button className='artistButton'><b>Save</b></button> 
             </div>
             
           </div>
