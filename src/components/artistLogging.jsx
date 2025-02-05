@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/authContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { FaSpotify } from "react-icons/fa";
 
 function artistLogging() {
     const navigate = useNavigate(); 
@@ -55,9 +58,21 @@ function artistLogging() {
       const artist = await responseOfArtistLogging.json();
       console.log("Login successful:", artist);
       login(artist); 
-      // Save user info (e.g., token) to localStorage
       localStorage.setItem("artist", JSON.stringify(artist));
       navigate("/artistDashboard");
+      toast.success('Welcome to the Artist DashBoard..!', {
+                icon: <FaSpotify size={40} color="white" />,
+                autoClose: 5000, 
+                style: {
+                  background: "#1DB954",
+                  color: "white", 
+                  fontSize: "16px", 
+                  fontWeight: "bold",
+                  padding: "12px 20px",
+                  borderRadius: "8px",
+                },
+                progressStyle: { background: "white" },
+              });
   
     } catch (error) {
       console.error("Login failed:", error);

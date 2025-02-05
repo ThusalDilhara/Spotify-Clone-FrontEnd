@@ -7,6 +7,9 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { FaSpotify } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //import backgroundImage from '../assets/Yuki.jpeg';
 import songProfileIcon from '../assets/image-1.jpeg';
@@ -21,6 +24,8 @@ function artistSigning() {
   const [isReleaseSongOpen, setIsReleaseSongOpen] = useState(false);
   const [isAddAlbumOpen, setIsAddAlbumOpen] = useState(false);
   const [isArtistProfileOpen, setIsOpenArtistProfile] = useState(false);
+  const [newName, setArtistNewName] = useState("");
+  const [newPassword, setArtistNewPassword] = useState("");
 
 
   //handle Release song UI
@@ -59,6 +64,105 @@ function artistSigning() {
 
   const goToLoggingPage = () => {
     navigate("/artistLogging");
+  };
+
+
+  //handle the delete artist
+  const deleteArtist = async (e) => {
+      e.preventDefault();
+      try {
+        const responseOfArtistLogging = await fetch("http://localhost:8080/api/artist/deleteArtist", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ 
+            email: artist.email,
+           }),
+        });
+    
+        if (!responseOfArtistLogging.ok) {
+          toast.success('Some Error..!', {
+            icon: <FaSpotify size={40} color="white" />,
+            autoClose: 5000, 
+            style: {
+              background: "red",
+              color: "white", 
+              fontSize: "16px", 
+              fontWeight: "bold",
+              padding: "12px 20px",
+              borderRadius: "8px",
+            },
+            progressStyle: { background: "white" },
+          });
+          return;
+        }
+        toast.success('Delete Artist Successfully..!', {
+                  icon: <FaSpotify size={40} color="white" />,
+                  autoClose: 5000, 
+                  style: {
+                    background: "#1DB954",
+                    color: "white", 
+                    fontSize: "16px", 
+                    fontWeight: "bold",
+                    padding: "12px 20px",
+                    borderRadius: "8px",
+                  },
+                  progressStyle: { background: "white" },
+                });
+        goToLoggingPage();        
+    
+      } catch (error) {
+        console.error("Login failed:", error);
+        toast.success('Some Error..!', {
+          icon: <FaSpotify size={40} color="white" />,
+          autoClose: 5000, 
+          style: {
+            background: "red",
+            color: "white", 
+            fontSize: "16px", 
+            fontWeight: "bold",
+            padding: "12px 20px",
+            borderRadius: "8px",
+          },
+          progressStyle: { background: "white" },
+        });
+      }
+    };
+
+    //handle the delete artist
+  const updateArtist = async (e) => {
+    e.preventDefault();
+    if(artist.password==newPassword){
+      toast.success('Password Corrrect..!', {
+        icon: <FaSpotify size={40} color="white" />,
+        autoClose: 5000, 
+        style: {
+          background: "red",
+          color: "white", 
+          fontSize: "16px", 
+          fontWeight: "bold",
+          padding: "12px 20px",
+          borderRadius: "8px",
+        },
+        progressStyle: { background: "white" },
+      });
+    }else{
+      toast.success('Some Error..!', {
+        icon: <FaSpotify size={40} color="white" />,
+        autoClose: 5000, 
+        style: {
+          background: "red",
+          color: "white", 
+          fontSize: "16px", 
+          fontWeight: "bold",
+          padding: "12px 20px",
+          borderRadius: "8px",
+        },
+        progressStyle: { background: "white" },
+      });
+    }
+    
   };
 
   return (
@@ -296,19 +400,23 @@ function artistSigning() {
                         <tbody>
                           <tr>
                             <td style={{ width: "30%" }}>Name </td>
-                            <td style={{ width: "80%" }}>: <input placeholder={artist.artistName} type="text" /></td>
+                            <td style={{ width: "80%" }}>: <input value={newName} 
+                             onChange={(e) => setArtistNewName(e.target.value)}
+                             placeholder={artist.artistName} type="text" /></td>
                           </tr>
                           <tr>
                             <td>Email</td>
-                            <td>: <input placeholder={artist.email} type="text" /></td>
+                            <td>: <input disabled={true} value={artist.email} type="text" /></td>
                           </tr>
                           <tr>
                             <td>Password</td>
-                            <td>: <input placeholder={artist.password} type="text" /></td>
+                            <td>: <input placeholder="Enter Old password" type="text" /></td>
                           </tr>
                           <tr>
                             <td>New Password</td>
-                            <td>: <input type="text" /></td>
+                            <td>: <input value={newPassword} 
+                             onChange={(e) => setArtistNewPassword(e.target.value)}
+                             placeholder="Enter New password If needed" type="text" /></td>
                           </tr>
                         </tbody>
                       </table>
@@ -320,9 +428,9 @@ function artistSigning() {
             
             <button onClick={goToLoggingPage} className='artistSmallButton'><b>Sign Out</b></button>
             <div style={{ marginRight: "5%" }}></div>
-            <button onClick={goToLoggingPage} className='artistSmallButtonRed'><b>Delete Account</b></button>
+            <button onClick={deleteArtist} className='artistSmallButtonRed'><b>Delete Account</b></button>
             <div style={{ marginRight: "5%" }}></div>
-            <button onClick={goToLoggingPage} className='artistSmallButton'><b>Update</b></button>
+            <button onClick={updateArtist} className='artistSmallButton'><b>Update</b></button>
             <div style={{ marginRight: "5%" }}></div>
             <button className='artistButton'><b>Save</b></button> 
             </div>

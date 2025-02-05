@@ -113,7 +113,10 @@
   align-items: center;
   text-align: center;
   padding-top: 30px;
-  background-color: var(--spotify-black);
+  background-size: cover; /* Cover the entire screen */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  cursor: "pointer",
   }
   .addImageArea :hover{
     color: #b3b3b3;
