@@ -65,7 +65,7 @@ const AboutUs = () => {
             <section className="social">
               <h2>🔗 Follow Us</h2>
               <a
-                href="https://twitter.com/yourhandle"
+                href="https://x.com/Spotify?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -73,7 +73,7 @@ const AboutUs = () => {
               </a>{" "}
               |
               <a
-                href="https://github.com/yourrepo"
+                href="https://github.com/ThusalDilhara/Spotify-Clone/tree/main"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -81,7 +81,7 @@ const AboutUs = () => {
               </a>{" "}
               |
               <a
-                href="https://linkedin.com/in/yourprofile"
+                href="https://www.linkedin.com/company/spotify/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
