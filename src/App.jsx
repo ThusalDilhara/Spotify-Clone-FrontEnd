@@ -20,6 +20,7 @@ import Profile from "./components/Profile";
 import FollowedArtistPage from "./components/FollowedArtistPage";
 import ProtectedRoute from "./auth/protectedRoute";
 import Support from "./components/Support";
+import AboutUs from "./components/AboutUs";
 
 function App() {
   const updateSongRef = useRef(null);
@@ -79,6 +80,7 @@ function App() {
 
       <BrowserRouter>
         <Routes>
+          <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/" element={<SignupComponent />} />
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/support" element={<Support />} />
