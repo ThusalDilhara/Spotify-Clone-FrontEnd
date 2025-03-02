@@ -1,0 +1,89 @@
+
+.sup-container {
+    padding: 20px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: #121212; 
+    color: #ffffff; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sup-box {
+    padding: 20px;
+  }
+  
+  .sup-box h1 {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 30px;
+    color: #ffffff; 
+  }
+  
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #b3b3b3; 
+  }
+  
+  select,
+  input,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #1e1e1e; 
+    color: #ffffff; 
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  select:focus,
+  input:focus,
+  textarea:focus {
+    border-color: #1db954; 
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+
+  button {
+    background-color: #1db954; 
+    color: #000000;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #79f9a6; 
+  }
+
+.sup-footer{
+    width: 100%;
+    margin-left: 250px;
+
+}

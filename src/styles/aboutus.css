@@ -1,0 +1,118 @@
+.about-us {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    font-family: "Arial", sans-serif;
+    line-height: 1.6;
+    color: #000000;
+    background-color: #fcfcfc;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .about-header h1 {
+    font-size: 2.5rem;
+    color: #000000;
+    text-align: center;
+  }
+  
+  .about-header span {
+    color: #000000;
+  }
+  
+  .about-header p {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .about-content section {
+    margin-bottom: 30px;
+  }
+  
+  h2 {
+    color: #000000;
+    font-size: 1.8rem;
+  }
+  
+  .team-member {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .contact p,
+  .support p,
+  .social a {
+    font-size: 1rem;
+  }
+  
+  .support a {
+    color: #5fed30;
+  }
+  
+  .support a:hover {
+    color: #000000;
+  }
+  
+  .social a {
+    color: #000000;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  .social a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Inline Layouts */
+  .inline-sections {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    flex-wrap: wrap; /* Ensures that sections wrap on smaller screens */
+  }
+  
+  .inline-sections section {
+    flex: 1;
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 8px;
+    min-width: 250px; /* Ensures sections don't get too narrow */
+  }
+  
+  .inline-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 0px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .inline-footer section {
+    flex: 1;
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 8px;
+    min-width: 250px; /* Ensures sections don't get too narrow */
+  }
+  
+  @media (max-width: 768px) {
+    .about-us {
+      padding: 20px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    .inline-sections,
+    .inline-footer {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+  
