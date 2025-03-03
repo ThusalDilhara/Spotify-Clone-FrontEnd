@@ -164,9 +164,11 @@ const Header = ({updateSong}) => {
               <span>My Profile</span>
             </Link>
           </div>
-          <div className="menu_item">
+          <div className="menu_item"  onClick={handlePremiumClick}>
             <FaCrown className="menu_icon" />
+           
             <span>Upgrade to Premium</span>
+            
           </div>
           <div className="menu_item">
             <FaSignOutAlt className="menu_icon" />
