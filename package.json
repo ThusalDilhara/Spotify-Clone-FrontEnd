@@ -21,9 +21,11 @@
     "react-bootstrap": "^2.10.8",
     "react-dom": "^18.3.1",
     "react-icons": "^5.4.0",
+    "react-modal": "^3.16.3",
     "react-router-dom": "^7.0.2",
     "react-toastify": "^11.0.2",
-    "search-insights": "^2.17.3"
+    "search-insights": "^2.17.3",
+    "sweetalert2": "^11.17.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
