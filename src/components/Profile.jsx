@@ -7,12 +7,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Profile = () => {
   const userId = JSON.parse(localStorage.getItem('user')).userId;
-  const [username, setUsername] = useState("");
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [passwordField, setPasswordField] = useState("");
   const [subscriptionType, setSubscriptionType] = useState("");
   const [errors, setErrors] = useState({
-    username: "",
+    userName: "",
     password: "",
   });
 
@@ -22,7 +22,7 @@ const Profile = () => {
       .get(`http://localhost:8080/api/users/getUserDetails/${userId}`)
       .then((response) => {
         const user = response.data;
-        setUsername(user.userName);
+        setUserName(user.userName);
         setEmail(user.email);
         setSubscriptionType(user.subscriptionType);
         setPasswordField(user.password);
@@ -54,12 +54,12 @@ const Profile = () => {
     e.preventDefault();
 
     // Validate fields
-    const usernameError = validateUsername(username);
+    const usernameError = validateUsername(userName);
     const passwordError = passwordField ? validatePassword(passwordField) : "";
 
     if (usernameError || passwordError) {
       setErrors({
-        username: usernameError,
+        userName: usernameError,
         password: passwordError,
       });
       return;
@@ -68,10 +68,10 @@ const Profile = () => {
     // Prepare updated user data
     const updatedUser = {
       id: userId,
-      username,
+      userName,
       email,
       subscriptionType,
-      password: passwordField ? passwordField : undefined, // Only update if changed
+      password: passwordField ? passwordField : undefined,
     };
 
    
@@ -79,7 +79,7 @@ const Profile = () => {
       .post("http://localhost:8080/api/users/updateUser", updatedUser)
       .then((response) => {
         toast.success("Profile updated successfully!");
-        setPasswordField(""); // Clear password field after saving
+        
       })
       .catch((error) => {
         console.error("Error updating profile:", error);
@@ -102,14 +102,13 @@ const Profile = () => {
                 className="profile-input"
                 type="text"
                 id="username"
-                placeholder="Enter your username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
                 required
               />
-              {errors.username && (
+              {errors.userName && (
                 <div className="error-message-form-profile-username">
-                  {errors.username}
+                  {errors.userName}
                 </div>
               )}
             </div>
