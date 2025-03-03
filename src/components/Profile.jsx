@@ -4,6 +4,7 @@ import { Footer } from "./Footer";
 import axios from "axios"; 
 import { ToastContainer, toast } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 
 const Profile = () => {
   const userId = JSON.parse(localStorage.getItem('user')).userId;
@@ -49,6 +50,36 @@ const Profile = () => {
     return "";
   };
 
+  const onclickDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to recover this account!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+      background:"#282828",color:"#FFFFFF"
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:8080/api/users/deleteUser/${userId}`)
+          .then((response) => {
+            
+            localStorage.removeItem("user");
+            window.location.href = "/";
+           
+          })
+          .catch((error) => {
+            console.error("Error deleting profile:", error);
+            toast.error("Failed to delete profile.");
+          });
+      }
+    });
+  };
+  
+
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,6 +96,7 @@ const Profile = () => {
       return;
     }
 
+    
     // Prepare updated user data
     const updatedUser = {
       id: userId,
@@ -157,7 +189,7 @@ const Profile = () => {
             </div>
 
             <div className="button-container">
-              <button className="button-delete" type="button">
+              <button className="button-delete" type="button" onClick={onclickDelete}>
                 Delete Profile
               </button>
               <button className="button-save" type="submit">
