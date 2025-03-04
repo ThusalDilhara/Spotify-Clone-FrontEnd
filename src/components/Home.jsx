@@ -12,6 +12,7 @@ import image6 from '../assets/image-6.jpg';
 import SongItem from './SongItem';
 import ArtistItem from './artistItem';
 import { Footer } from './Footer';
+import { Link, useNavigate } from "react-router-dom";
 
 const albums = [
   { image: image1, title: 'Album 1', desc: 'This is the description for Album 1.' },
@@ -155,6 +156,8 @@ const Home = ({ updateSong }) => {
 
         <div className="space"></div>
         <Footer />
+        <Link to="/upload"><button>register artist</button></Link>
+        <Link to="/uploadSong"><button>upload song</button></Link>
         <div className="space"></div>
       </div>
     </>
