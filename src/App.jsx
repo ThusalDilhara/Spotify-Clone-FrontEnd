@@ -23,6 +23,7 @@ import Support from "./components/Support";
 import AboutUs from "./components/AboutUs";
 import ArtistImageUpload from "./test/uploadImage";
 import UploadSong from "./test/uploadSong";
+import PlaylistPage from "./components/PlaylistPage";
 
 function App() {
   const updateSongRef = useRef(null);
@@ -135,6 +136,27 @@ function App() {
                 />
                 <Sidebar />
                 <ArtistPage
+                  updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }
+                />
+                <MusicPlayer
+                  updateSong={(fn) => (updateSongRef.current = fn)}
+                />
+              </div>
+            }
+          />
+           <Route
+            path="/playlist/:playlistId"
+            element={
+              <div>
+                <Header
+                  updateSong={(song) =>
+                    updateSongRef.current && updateSongRef.current(song)
+                  }
+                />
+                <Sidebar />
+                <PlaylistPage
                   updateSong={(song) =>
                     updateSongRef.current && updateSongRef.current(song)
                   }
