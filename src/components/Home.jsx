@@ -7,6 +7,7 @@ import SongItem from './SongItem';
 import ArtistItem from './artistItem';
 import { Footer } from './Footer';
 import { Link, useNavigate } from "react-router-dom";
+import PlaylistItem from './PlaylistItem';
 
 
 
@@ -120,7 +121,7 @@ const Home = ({ updateSong }) => {
         <h3>Featured Charts</h3>
         <div className="albumItem">
           {playlists.map((playlist, index) => (
-            <AlbumItem key={index} title={playlist.title} desc={playlist.description} img={playlist.imageUrl} />
+            <PlaylistItem key={index} title={playlist.title} desc={playlist.description} img={playlist.imageUrl} playlistId={playlist.playlistId} />
           ))}
         </div>
 
