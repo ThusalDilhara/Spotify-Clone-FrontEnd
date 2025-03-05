@@ -4,7 +4,6 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/authContext";
 
-
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,6 +23,37 @@ const LoginComponent = () => {
     return "";
   };
 
+  //   try {
+  //     const response = await fetch("http://localhost:8080/api/users/login", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ email, password }),
+  //     });
+
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       setLoginError(errorData.message || "Invalid credentials");
+  //       return;
+  //     }
+
+  //     const { token } = await response.json(); // Assuming the backend sends the token
+  //     console.log("Login successful:", token);
+
+  //     // Save token to localStorage
+  //     localStorage.setItem("token", token);
+
+  //     // Optionally, you can save the token in a global context or state
+  //     login({ token });
+
+  //     // Navigate to the home page
+  //     navigate("/home");
+  //   } catch (error) {
+  //     console.error("Login failed:", error);
+  //     setLoginError("Something went wrong. Please try again.");
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -45,20 +75,35 @@ const LoginComponent = () => {
         body: JSON.stringify({ email, password }),
       });
 
+      // If response is empty or not JSON, handle it gracefully
       if (!response.ok) {
-        const errorData = await response.json();
+        const errorData = await response
+          .json()
+          .catch(() => ({ message: "Invalid credentials" }));
         setLoginError(errorData.message || "Invalid credentials");
         return;
       }
 
-      const user = await response.json();
-      console.log("Login successful:", user);
-      login(user); 
-      // Save user info (e.g., token) to localStorage
-      localStorage.setItem("user", JSON.stringify(user));
+      // Check if the response is empty or invalid JSON
+      const data = await response.json().catch(() => {
+        setLoginError("Unexpected server response.");
+        return null; // Avoid proceeding if JSON is invalid
+      });
 
-      // Navigate to the home page
-      navigate("/home");
+      if (data && data.token) {
+        const { token } = data; // Get the token from the response
+        console.log("Login successful:", token);
+
+        // Save token to localStorage
+        localStorage.setItem("token", token);
+
+        // Optionally, save the token in context or global state
+        login({ token });
+
+        // Navigate to the home page
+        console.log("Navigating to /home...");
+        navigate("/home");
+      }
     } catch (error) {
       console.error("Login failed:", error);
       setLoginError("Something went wrong. Please try again.");

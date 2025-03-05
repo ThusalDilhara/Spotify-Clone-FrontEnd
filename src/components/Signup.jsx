@@ -3,6 +3,7 @@ import "../styles/signup.css";
 import { CiCircleChevRight } from "react-icons/ci";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const SignupPage = () => {
   };
 
   // Handle form submission
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -77,6 +79,27 @@ const SignupPage = () => {
             }),
           }
         );
+
+        // const response = await axios.post(
+        //   "http://localhost:8080/api/users/register",
+        //   {
+        //     userName: username,
+        //     email,
+        //     password: passwordField,
+        //     likedSongs,
+        //     LibraryPlaylists,
+        //     followedArtists,
+        //   },
+        //   {
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+
+        //   }
+        // );
+
+        console.log(response);
+
         if (response.ok) {
           const data = await response.json();
           console.log("Signup successful", data);
