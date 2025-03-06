@@ -69,7 +69,7 @@ const FollowedArtistPage = () => {
       <img src={followedArtistImage} alt="Followed Artist" className='header_img' />
        <div className='FollowedArtistPage_info'>
       <h2>Followed Artists</h2>
-      <h4>{data.userName} : Following {artist.length}</h4>
+      <h4>{data.username} : Following {artist.length}</h4>
       </div>
      </div>
       <div className='FollowedArtistPage_body'>
