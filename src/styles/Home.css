@@ -1,7 +1,7 @@
-body {
+body,html{
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   font-family: Arial, sans-serif;
 }
 
@@ -12,6 +12,7 @@ body {
   right: 0;
   bottom: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   background-color: var(--spotify-dark-gray);
   color: var(--spotify-white);
   padding-left: 20px;

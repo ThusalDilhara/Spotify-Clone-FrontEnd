@@ -44,26 +44,34 @@ const LoginComponent = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-
+    
       if (!response.ok) {
         const errorData = await response.json();
         setLoginError(errorData.message || "Invalid credentials");
         return;
       }
-
-      const user = await response.json();
-      console.log("Login successful:", user);
-      login(user); 
-      // Save user info (e.g., token) to localStorage
+    
+      const responseData = await response.json();
+      console.log("Login successful:", responseData);
+    
+      // Extract token and user separately
+      const { token, user } = responseData;
+    
+      // Store user and token in localStorage
+      localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
-
+    
+      // Call login function with user data
+      login(user);
+    
       // Navigate to the home page
       navigate("/home");
     } catch (error) {
       console.error("Login failed:", error);
       setLoginError("Something went wrong. Please try again.");
     }
-  };
+  }
+    
 
   return (
     <div className="login-container">
