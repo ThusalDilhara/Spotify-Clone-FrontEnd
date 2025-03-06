@@ -1,7 +1,7 @@
 import { FaPlay, FaHeart, FaRegHeart } from "react-icons/fa";
 import "../styles/ArtistPage.css"; 
 
-const SongRow = ({ song, isLiked, onPlay, onLikeToggle }) => {
+const songCardOnArtist = ({ song, isLiked, onPlay, onLikeToggle }) => {
   return (
     <li className="Artistsongitem">
       <div className="Artistsonginfo">
@@ -40,4 +40,4 @@ const SongRow = ({ song, isLiked, onPlay, onLikeToggle }) => {
   );
 };
 
-export default SongRow;
+export default songCardOnArtist;
