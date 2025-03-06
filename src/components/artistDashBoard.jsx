@@ -14,14 +14,14 @@ import axios from "axios";
 import SongRow from "./songCardOnArtist";  
 import { useDropzone } from "react-dropzone";
 
+
+
 function artistSigning() {
 
   const artist = JSON.parse(localStorage.getItem("artist"));
   const backgroundImage = `${artist.artistImage}`;
   const artistEmail = `${artist.email}`;
   const artistID = `${artist.artistId}`;
-
-
   const navigate = useNavigate();
 
   const [isReleaseSongOpen, setIsReleaseSongOpen] = useState(false);
@@ -34,11 +34,13 @@ function artistSigning() {
   //handle song
   const [songName, setSongName] = useState("");
   const artistName = `${artist.artistName}`;
+  const artistPassword = `${artist.password}`;
   const [imageFile, setImageFile] = useState(null);
   const [audioFile, setAudioFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [songs, setSongs] = useState([]);
   const [fileName, setFileName] = useState('');
+  
 
 
   //handle Release song UI
@@ -56,7 +58,6 @@ function artistSigning() {
   const closeArtistProfile = () => {
     setIsOpenArtistProfile(false);
   };
-
   const handleAudioChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -65,6 +66,7 @@ function artistSigning() {
     }
   };
 
+  //to handle save song 
   const handleSongUpload = async () => {
     setLoading(true);
     console.log("Came to the handle Song Upload method ");
@@ -72,14 +74,13 @@ function artistSigning() {
       alert("Please fill all fields and select both image and audio files.");
       return;
     }
-
     setLoading(true);
 
     try {
-    
       const imageFormData = new FormData();
       imageFormData.append("file", imageFile);
       imageFormData.append("upload_preset", "spotifyClone");
+
       console.log("Came to try method ");
 
       const imageResponse = await axios.post(
@@ -90,7 +91,6 @@ function artistSigning() {
       const ImageUrl = imageResponse.data.secure_url;
       console.log("Uploaded the image ");
 
-     
       const audioFormData = new FormData();
       audioFormData.append("file", audioFile);
       audioFormData.append("upload_preset", "spotifyClone");
@@ -116,25 +116,30 @@ function artistSigning() {
         songData
       );
 
-      axios
-            .post("http://localhost:8080/api/songs/getSongsByIds", artist.artistId, {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            })
-            .then((songResponse) => {
-              localStorage.setItem("artist", JSON.stringify(songResponse));
-            })
-            .catch((error) => console.error("Error fetching song details:", error));
-      
+      //logging again artist
+      console.log("Login again, artist email:", artistEmail);
+      console.log("Password is :", artistPassword)
+      const responseOfArtistLogging = await fetch("http://localhost:8080/api/artist/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          email: artistEmail,
+          password: artistPassword, }),
+      });
+  
+      if (!responseOfArtistLogging.ok) {
 
-      //alert("Song Uploaded Successfully!");
-      navigate("/artistDashboard");
-      setLoading(false);
+        showToast("Failed to get artist..!$artistEmail", "red", "white");
+        return;
+      }
+      const artist = await responseOfArtistLogging.json();
+      localStorage.setItem("artist", JSON.stringify(artist));
+      closeReleaseSong();
       window.location.reload();
-      showToast("Released Song Successfully..!", "green", "white");
-      console.log("Backend Response:", backendResponse.data);
-
+      navigate("/artistDashboard");
+      showToast("Released A New Song..!", "#1DB954", "white");
      
     } catch (error) {
       console.error("Upload failed:", error);
@@ -294,7 +299,7 @@ function artistSigning() {
             .catch((error) => console.error("Error fetching song details:", error));
         
 
-  }, []);
+  }, [songs]);
 
   //release song
     const onDrop = useCallback((acceptedFiles) => {
@@ -316,8 +321,6 @@ function artistSigning() {
 
   return (
     <>
-    
-
       <div className='headerbody'>
       <div className='spotifyIcon'>
         <FontAwesomeIcon icon={faSpotify} size="4x" color="white" />
@@ -468,6 +471,7 @@ function artistSigning() {
                                         color: 'black',
                                         cursor: 'pointer',
                                         backgroundColor:"white",
+                                        marginTop:"10px",
                                         padding:"5px" ,
                                         borderRadius: '5px'
                                        }}
@@ -491,8 +495,8 @@ function artistSigning() {
                   {loading ? (
         <div className="spinner" style={{ marginRight: '8px' }}>
           <svg
-            width="20"
-            height="20"
+            width="40"
+            height="40"
             viewBox="0 0 100 100"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
