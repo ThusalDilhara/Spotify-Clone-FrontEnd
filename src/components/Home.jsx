@@ -29,25 +29,53 @@ const Home = ({ updateSong }) => {
  
 
   useEffect(() => {
+    const fetchSongs = () => {
+      axios
+        .get('http://localhost:8080/api/songs/getdetails')
+        .then((response) => {
+          if (response.data.length > 6) {
+            const shuffledSongs = response.data.sort(() => 0.5 - Math.random());
+            setSongs(shuffledSongs.slice(0, 6));
+          } else {
+            setSongs(response.data);
+          }
+        })
+        .catch((error) => console.error('Error fetching songs:', error));
+    };
   
-    axios
-      .get('http://localhost:8080/api/songs/getdetails')
-      .then((response) => setSongs(response.data))
-      .catch((error) => console.error('Error fetching songs:', error));
+    fetchSongs(); 
+    const interval = setInterval(fetchSongs, 30000); // Refresh every 30 seconds
+  
+    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
+  
 
   useEffect(() => {
     
     axios
       .get('http://localhost:8080/api/artist/getAllArtists')
-      .then((response) => setArtists(response.data))
+      .then((response) => {
+        if (response.data.length > 4) {
+          const shuffledArtist = response.data.sort(() => 0.5 - Math.random());
+          setArtists(shuffledArtist.slice(0, 5));
+        } else {
+          setArtists(response.data);
+        }
+      })
       .catch((error) => console.error('Error fetching artists:', error));
   }, []);
 
   useEffect(()=>{
     axios
     .get('http://localhost:8080/api/playlists')
-    .then((response) => setPlaylists(response.data))
+    .then((response) =>{
+      if (response.data.length > 4) {
+        const shuffledplaylist = response.data.sort(() => 0.5 - Math.random());
+        setPlaylists(shuffledplaylist.slice(0, 6));
+      } else {
+        setPlaylists(response.data);
+      }
+    })
     .catch((error) => console.error('Error fetching albums:', error));
   },[]
   );
