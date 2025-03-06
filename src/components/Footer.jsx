@@ -52,7 +52,10 @@ export const Footer = () => {
               Useful links
             </li>
 
+
+            <Link to="/support">
             <li>Support</li>
+            </Link>
             <li>Free Mobile App</li>
           </ul>
         </div>

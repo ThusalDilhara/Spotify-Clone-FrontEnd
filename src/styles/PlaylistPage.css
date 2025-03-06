@@ -1,0 +1,71 @@
+.playlist {
+  position: absolute;
+  top: 70px;
+  left: 295px;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  background-color: var(--spotify-dark-gray);
+  color: var(--spotify-white);
+  border-radius: 10px;
+  padding-left: 5px;
+}
+
+.playlist::-webkit-scrollbar {
+  width: 12px;
+}
+
+.playlist::-webkit-scrollbar-track {
+  background: var(--spotify-dark-gray);
+  border-radius: 6px;
+}
+
+.playlist::-webkit-scrollbar-thumb {
+  background-color: #2a2a2a;
+}
+
+.playlist::-webkit-scrollbar-thumb:hover {
+  background-color: #504f4f;
+}
+
+
+.playlist-info {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(45deg, #1a1a2e, #16213e);
+}
+
+.playlist-info img {
+  width: 250px;
+  height: 250px;
+  border-radius: 8px;
+  padding-right: 20px;
+}
+
+.playlist-stats h2 {
+  margin: 0;
+  font-size: 70px;
+}
+
+.playlist-stats .gray {
+  margin: 5px 0;
+  color: gray;
+}
+
+.playlist-songs{
+  padding-left: 10px;
+}
+
+.playlist-songs ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.playlist-songs ul li {
+  margin-bottom: 15px;
+}
+
+.space {
+  margin-top: 20px;
+}

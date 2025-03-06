@@ -8,6 +8,7 @@ const SongRow = ({ song, isLiked, onPlay, onLikeToggle }) => {
         <img src={song.imageUrl} alt={song.songName} className="Artistsongimage" />
         <div className="Artistsongdetails">
           <p className="Artistsongname">{song.songName}</p>
+          <p className="songartist">{song.artist}</p>
           <div className="Artistsongactions">
             <div className="play-btn-wrapper">
               <button className="play-btn" onClick={() => onPlay(song)}>
