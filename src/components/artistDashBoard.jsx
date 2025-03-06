@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, useCallback } from "react";
 import '../styles/artistDashBoard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
@@ -12,10 +12,7 @@ import {toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import SongRow from "./songCardOnArtist";  
-
-
-//import backgroundImage from '../assets/Yuki.jpeg';
-import songProfileIcon from '../assets/image-1.jpeg';
+import { useDropzone } from "react-dropzone";
 
 function artistSigning() {
 
@@ -23,7 +20,6 @@ function artistSigning() {
   const backgroundImage = `${artist.artistImage}`;
   const artistEmail = `${artist.email}`;
   const artistID = `${artist.artistId}`;
-  const songsCount = artist?.SongsIds?.length || 0;
 
 
   const navigate = useNavigate();
@@ -42,6 +38,7 @@ function artistSigning() {
   const [audioFile, setAudioFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [songs, setSongs] = useState([]);
+  const [fileName, setFileName] = useState('');
 
 
   //handle Release song UI
@@ -60,19 +57,18 @@ function artistSigning() {
     setIsOpenArtistProfile(false);
   };
 
-
-  //handle relase song
-  const handleImageChange = (event) => {
-    setImageFile(event.target.files[0]);
-  };
-
   const handleAudioChange = (event) => {
-    setAudioFile(event.target.files[0]);
+    const file = event.target.files[0];
+    if (file) {
+      setFileName(file.name); // Store the file name in state
+      setAudioFile(file);
+    }
   };
 
   const handleSongUpload = async () => {
+    setLoading(true);
     console.log("Came to the handle Song Upload method ");
-    if (!songName || !artistName || !artistID || !imageFile || !audioFile) {
+    if (!songName || !artistName || !artistID || !imageFile || !fileName) {
       alert("Please fill all fields and select both image and audio files.");
       return;
     }
@@ -106,7 +102,7 @@ function artistSigning() {
       );
       const audioUrl = audioResponse.data.secure_url;
 
-    
+      console.log("uploaded image and audio file ");
       const songData = {
         songName:songName,
         artist:artistName,
@@ -120,8 +116,22 @@ function artistSigning() {
         songData
       );
 
+      axios
+            .post("http://localhost:8080/api/songs/getSongsByIds", artist.artistId, {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+            .then((songResponse) => {
+              localStorage.setItem("artist", JSON.stringify(songResponse));
+            })
+            .catch((error) => console.error("Error fetching song details:", error));
+      
+
       //alert("Song Uploaded Successfully!");
-      closeReleaseSong();
+      navigate("/artistDashboard");
+      setLoading(false);
+      window.location.reload();
       showToast("Released Song Successfully..!", "green", "white");
       console.log("Backend Response:", backendResponse.data);
 
@@ -286,6 +296,24 @@ function artistSigning() {
 
   }, []);
 
+  //release song
+    const onDrop = useCallback((acceptedFiles) => {
+      const file1 = acceptedFiles[0]; // Get the first dropped file
+      if (file1) {
+        const fileURL = URL.createObjectURL(file1); // Create a local URL for preview
+        setPreview(fileURL);
+        setImageFile(file1);
+      }
+    }, []);
+
+      // Image preview state
+      const [preview, setPreview] = useState(null);
+  
+    const { getRootProps, getInputProps } = useDropzone({
+      onDrop,
+      accept: "image/*", // Only accept image files
+    });
+
   return (
     <>
     
@@ -346,7 +374,7 @@ function artistSigning() {
 
         </div><br />
         <div className='songListArea'>
-          <div className='songCard'>
+          {/* <div className='songCard'>
             <b>01</b>
             <div style={{ marginRight: "20px" }}></div>
             <div className='songProfileIcon' style={{ backgroundImage: `url(${songProfileIcon})` }}></div>
@@ -371,34 +399,7 @@ function artistSigning() {
               <div className='songName'><b>...</b></div>
               </div>
 
-          </div>
-
-          <div className='songCard'>
-            <b>01</b>
-            <div style={{ marginRight: "20px" }}></div>
-            <div className='songProfileIcon' style={{ backgroundImage: `url(${songProfileIcon})` }}></div>
-            <div style={{ marginRight: "20px" }}></div>
-            <div className='songDetails'>
-              <div className='songName'>Pini Bidu</div>
-              Yuki Navarathne | 2024 January Released
-              </div>
-              <div style={{ marginRight: "20%" }}></div>
-              <div className='songDetails'>
-              <div className='songName'>
-              <FontAwesomeIcon icon={faStar} style={{ color: "gold", fontSize: "15px",marginRight:"10px"}} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "gold", fontSize: "15px",marginRight:"10px"}} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "gold", fontSize: "15px",marginRight:"10px"}} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "gold", fontSize: "15px",marginRight:"10px"}} />
-              <FontAwesomeIcon icon={faStar} style={{ color: "white", fontSize: "15px",marginRight:"10px"}} />
-              </div>
-              234K Views
-              </div>
-              <div style={{ marginRight: "20%" }}></div>
-              <div className='songDetails'>
-              <div className='songName'><b>...</b></div>
-              </div>
-
-          </div>
+          </div> */}
           {songs.length === 0 ? (
           <p>No songs from this artist yet</p>
         ) : (
@@ -428,12 +429,15 @@ function artistSigning() {
                   
                   <h2><u >Release A Song</u></h2>
                   <div style={{display:"flex"}}>
-                    <div className='addImageArea'>
-                            <FontAwesomeIcon icon={faImage} size='4x'/>
-                            <br />
-                            <input type="file" accept="image/*" onChange={handleImageChange} required />
-                            + Add Image
-                            </div>
+                    <div className='addImageArea' {...getRootProps()}
+                                  style={{ backgroundImage: preview ? `url(${preview})` : "none", cursor: "pointer" }}>
+                                  {!preview && (
+                                    <>
+                                      <input {...getInputProps()} />
+                                      <p><FontAwesomeIcon icon={faImage} size='3x' /><br />+ Add Image</p>
+                                    </>
+                                  )}
+                                </div>
                             <div style={{ marginRight: "40px" }}></div>
                             <div className="inputArea">
                             <table style={{textAlign:"left", width:"100%"}}>
@@ -453,7 +457,25 @@ function artistSigning() {
                                 </tr>
                                 <tr>
                                   <td>Audio File</td>
-                                  <td>: <input type="file" accept="audio/*" onChange={handleAudioChange} required /></td>
+                                  <td>: <input 
+                                  style={{ display: 'none' }}  
+                                  type="file" accept="audio/*" 
+                                  onChange={handleAudioChange} required
+                                  id="file-input" />
+                                  <label 
+                                      htmlFor="file-input" 
+                                      style={{ 
+                                        color: 'black',
+                                        cursor: 'pointer',
+                                        backgroundColor:"white",
+                                        padding:"5px" ,
+                                        borderRadius: '5px'
+                                       }}
+                                    >
+                                      Choose File
+                                    </label>
+                                    {fileName && <div style={{ marginTop: '10px', color: 'white' }}>{fileName}</div>}
+                                  </td>
                                 </tr>
                               </tbody>
                             </table>
@@ -465,7 +487,24 @@ function artistSigning() {
                   
                   <button onClick={closeReleaseSong} className='artistSmallButton'><b>Cancel</b></button>
                   <div style={{ marginRight: "40%" }}></div>
-                  <button  onClick={handleSongUpload} disabled={loading} className='artistButton'><b>Release</b></button> 
+                  <button  onClick={handleSongUpload} disabled={loading} className='artistButton'>
+                  {loading ? (
+        <div className="spinner" style={{ marginRight: '8px' }}>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            style={{ animation: 'spin 1s linear infinite' }}
+          >
+            <circle cx="50" cy="50" r="40" stroke="white" strokeWidth="5" fill="none" />
+          </svg>
+        </div>
+      ) : (
+        <b>Release</b>
+      )}
+                    </button> 
                   </div>
                   
                 </div>

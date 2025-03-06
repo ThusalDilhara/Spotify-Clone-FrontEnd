@@ -70,7 +70,7 @@ const SignupPage = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              userName: username,
+              username: username,
               email,
               password: passwordField,
               likedSongs,

@@ -23,7 +23,7 @@ const Profile = () => {
       .get(`http://localhost:8080/api/users/getUserDetails/${userId}`)
       .then((response) => {
         const user = response.data;
-        setUserName(user.userName);
+        setUserName(user.username);
         setEmail(user.email);
         setSubscriptionType(user.subscriptionType);
         setPasswordField(user.password);
@@ -100,7 +100,7 @@ const Profile = () => {
     // Prepare updated user data
     const updatedUser = {
       id: userId,
-      userName,
+      username:userName,
       email,
       subscriptionType,
       password: passwordField ? passwordField : undefined,
@@ -156,7 +156,7 @@ const Profile = () => {
               />
             </div>
 
-            <div className="form-group">
+            {/* <div className="form-group">
               <label>Password</label>
               <input
                 className="profile-input"
@@ -171,7 +171,7 @@ const Profile = () => {
                   {errors.password}
                 </div>
               )}
-            </div>
+            </div> */}
 
             <div className="form-group">
               <label>Subscription Type</label>

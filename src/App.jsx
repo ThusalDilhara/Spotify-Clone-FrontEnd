@@ -131,6 +131,7 @@ function App() {
           <Route
             path="/artist/:artistId"
             element={
+              <ProtectedRoute> 
               <div>
                 <Header updateSong={(song) => updateSongRef.current && updateSongRef.current(song)} />
                 <Sidebar />
@@ -140,6 +141,7 @@ function App() {
                 />
                 <MusicPlayer updateSong={(fn) => (updateSongRef.current = fn)} songs={songs} />
               </div>
+              </ProtectedRoute>
             }
           />
 
@@ -147,6 +149,7 @@ function App() {
           <Route
             path="/playlist/:playlistId"
             element={
+              <ProtectedRoute> 
               <div>
                 <Header updateSong={(song) => updateSongRef.current && updateSongRef.current(song)} />
                 <Sidebar />
@@ -156,6 +159,7 @@ function App() {
                 />
                 <MusicPlayer updateSong={(fn) => (updateSongRef.current = fn)} songs={songs} />
               </div>
+              </ProtectedRoute> 
             }
           />
 
@@ -163,6 +167,7 @@ function App() {
           <Route
             path="/likedSong"
             element={
+              <ProtectedRoute> 
               <div>
                 <Header updateSong={(song) => updateSongRef.current && updateSongRef.current(song)} />
                 <Sidebar />
@@ -172,6 +177,7 @@ function App() {
                 />
                 <MusicPlayer updateSong={(fn) => (updateSongRef.current = fn)} songs={songs} />
               </div>
+              </ProtectedRoute> 
             }
           />
 
@@ -179,19 +185,25 @@ function App() {
           <Route
             path="/followedArtist"
             element={
+              <ProtectedRoute> 
               <div>
                 <Header updateSong={(song) => updateSongRef.current && updateSongRef.current(song)} />
                 <Sidebar />
                 <FollowedArtistPage setSongs={setSongs} />
                 <MusicPlayer updateSong={(fn) => (updateSongRef.current = fn)} songs={songs} />
               </div>
+              </ProtectedRoute>
             }
           />
 
           {/* Artist Logging & Dashboard Routes */}
           <Route path="/artistLogging" element={<ArtistLogging />} />
           <Route path="/artistSigning" element={<ArtistSigning />} />
-          <Route path="/artistDashboard" element={<ArtistDashBoard />} />
+          <Route path="/artistDashboard" element={
+             <ProtectedRoute> <ArtistDashBoard /></ProtectedRoute>
+           
+            
+            } />
 
         </Routes>
       </BrowserRouter>
