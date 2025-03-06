@@ -33,10 +33,6 @@
   display: flex;
   gap: 10px;
   background: linear-gradient(45deg, #1c1f2b, #2a2d3e);
-
-
-
-
 }
 
 .artist-info img {
@@ -117,7 +113,6 @@
 
 .Artistsonginfo {
   display: flex;
-
 }
 
 .Artistsongimage {
@@ -129,11 +124,9 @@
 }
 
 .Artistsongdetails {
-
+  padding-right: 5px;
   display: flex;
   flex-direction: row;
-  
-  
 }
 
 .Artistsongname {
@@ -152,7 +145,22 @@
   margin-bottom: 5px;
   margin-left: 80px;
 }
+.songartistdetails{
+  font-size: 16px;
+  font-weight: 800;
+  color: #b3b3b3;
+  margin-bottom: 5px;
+  margin-left: 70%;
+  padding-right: 50px;
+}
 
+
+.songbutton{ 
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 800;
+  color: #b3b3b3;
+}
 .Artistsongname:hover {
   text-decoration: underline;
 }
