@@ -39,7 +39,7 @@ const PlaylistPage = ({ updateSong }) => {
       })
       .catch((error) => console.error("Error fetching playlist data:", error));
 
-    // Fetch user's liked songs
+    
     axios
       .get(`http://localhost:8080/api/users/getlikedSongs/${userId}`)
       .then((response) => {
@@ -88,15 +88,15 @@ const PlaylistPage = ({ updateSong }) => {
         
         <img src={playlist.imageUrl} alt={playlist.title} />
         <div className="playlist-stats">
-          <p>Playlist</p>
+          <h5>Playlist</h5>
           <h2>{playlist.title}</h2>
-          <h4>{playlist.description}</h4>
-          <h3>{songs.length} songs</h3>
+          <h4 className="gray">{playlist.description}</h4>
+          <h4 className="gray">{songs.length} songs</h4>
         </div>
       </div>
 
       <div className="playlist-songs">
-        <h3>Songs in this playlist</h3>
+        <h3>playlist Songs</h3>
         {songs.length === 0 ? (
           <p>No songs in this playlist yet</p>
         ) : (
@@ -113,9 +113,9 @@ const PlaylistPage = ({ updateSong }) => {
           </ul>
         )}
         <div className="space"></div>
-        <Footer />
+        
       </div>
-
+      <Footer />
       <div className="space"></div>
     </div>
   );
