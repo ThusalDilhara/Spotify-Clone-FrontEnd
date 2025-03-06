@@ -2,29 +2,19 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/Home.css';
 import Navbar from './navbar';
-import AlbumItem from './AlbumItem';
-import image1 from '../assets/image-1.jpeg';
-import image2 from '../assets/image-2.jpg';
-import image3 from '../assets/image-3.jpg';
-import image4 from '../assets/image-4.jpg';
-import image5 from '../assets/image-5.jpg';
-import image6 from '../assets/image-6.jpg';
+import AlbumItem from './PlaylistItem';
 import SongItem from './SongItem';
 import ArtistItem from './artistItem';
 import { Footer } from './Footer';
+import { Link, useNavigate } from "react-router-dom";
+import PlaylistItem from './PlaylistItem';
 
-const albums = [
-  { image: image1, title: 'Album 1', desc: 'This is the description for Album 1.' },
-  { image: image2, title: 'Album 2', desc: 'This is the description for Album 2.' },
-  { image: image3, title: 'Album 3', desc: 'This is the description for Album 3.' },
-  { image: image4, title: 'Album 4', desc: 'This is the description for Album 4.' },
-  { image: image5, title: 'Album 5', desc: 'This is the description for Album 5.' },
-  { image: image6, title: 'Album 6', desc: 'This is the description for Album 6.' },
-];
+
 
 const Home = ({ updateSong }) => {
   const [songs, setSongs] = useState([]);
   const [artists, setArtists] = useState([]);
+  const [playlists,setPlaylists] = useState([]);
  
   const userId = JSON.parse(localStorage.getItem('user')).userId;
   
@@ -39,27 +29,63 @@ const Home = ({ updateSong }) => {
  
 
   useEffect(() => {
+    const fetchSongs = () => {
+      axios
+        .get('http://localhost:8080/api/songs/getdetails')
+        .then((response) => {
+          if (response.data.length > 6) {
+            const shuffledSongs = response.data.sort(() => 0.5 - Math.random());
+            setSongs(shuffledSongs.slice(0, 6));
+          } else {
+            setSongs(response.data);
+          }
+        })
+        .catch((error) => console.error('Error fetching songs:', error));
+    };
   
-    axios
-      .get('http://localhost:8080/api/songs/getdetails')
-      .then((response) => setSongs(response.data))
-      .catch((error) => console.error('Error fetching songs:', error));
+    fetchSongs(); 
+    const interval = setInterval(fetchSongs, 30000); // Refresh every 30 seconds
+  
+    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
+  
 
   useEffect(() => {
     
     axios
       .get('http://localhost:8080/api/artist/getAllArtists')
-      .then((response) => setArtists(response.data))
+      .then((response) => {
+        if (response.data.length > 4) {
+          const shuffledArtist = response.data.sort(() => 0.5 - Math.random());
+          setArtists(shuffledArtist.slice(0, 5));
+        } else {
+          setArtists(response.data);
+        }
+      })
       .catch((error) => console.error('Error fetching artists:', error));
   }, []);
+
+  useEffect(()=>{
+    axios
+    .get('http://localhost:8080/api/playlists')
+    .then((response) =>{
+      if (response.data.length > 4) {
+        const shuffledplaylist = response.data.sort(() => 0.5 - Math.random());
+        setPlaylists(shuffledplaylist.slice(0, 6));
+      } else {
+        setPlaylists(response.data);
+      }
+    })
+    .catch((error) => console.error('Error fetching albums:', error));
+  },[]
+  );
 
 
 
   const handleUpdateSong = (song) => {
     updateSong(song); // Call the parent updateSong function
   
-    // Update user history
+    
     setUserHistory((prevHistory) => {
       console.log('Current Song:', song);
       console.log('Previous History:', prevHistory);
@@ -122,8 +148,8 @@ const Home = ({ updateSong }) => {
 
         <h3>Featured Charts</h3>
         <div className="albumItem">
-          {albums.map((album, index) => (
-            <AlbumItem key={index} title={album.title} desc={album.desc} img={album.image} />
+          {playlists.map((playlist, index) => (
+            <PlaylistItem key={index} title={playlist.title} desc={playlist.description} img={playlist.imageUrl} playlistId={playlist.playlistId} />
           ))}
         </div>
 

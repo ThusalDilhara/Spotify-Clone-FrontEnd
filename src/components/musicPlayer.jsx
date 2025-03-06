@@ -8,35 +8,46 @@ import { HiOutlineQueueList } from "react-icons/hi2";
 
 import "../styles/musicPlayer.css";
 
-const MusicPlayer = ({ updateSong }) => {
+const MusicPlayer = ({ updateSong, songs }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMute, setIsMute] = useState(false);
   const [isShuffle, setIsShuffle] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [currentSong, setCurrentSong] = useState(null);
-  const [currentTime, setCurrentTime] = useState(0); // Current time of the song
-  const [duration, setDuration] = useState(0); // Total duration of the song
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   const audioRef = useRef(new Audio());
 
-  // Callback to allow updates from parent or sibling components
-  updateSong((newSong) => {
-    if (newSong) {
-      setCurrentSong(newSong);
-      audioRef.current.src = newSong.url; // Update audio source
-      audioRef.current.load();
-      audioRef.current.play();
-      setIsPlaying(true);
-      setCurrentTime(0);
-    }
-  });
+  //  Update song when a new song is selected from the parent component
+  useEffect(() => {
+    updateSong((newSong) => {
+      if (newSong) {
+        const index = songs.findIndex((song) => song._id === newSong._id);
+        if (index !== -1) setCurrentIndex(index);
+        playSong(newSong);
+      }
+    });
+  }, [songs]);
 
+  //  Function to play a song
+  const playSong = (song) => {
+    setCurrentSong(song);
+    audioRef.current.src = song.url;
+    audioRef.current.load();
+    audioRef.current.play();
+    setIsPlaying(true);
+    setCurrentTime(0);
+  };
+
+  //  Handle song end: play next song or repeat
   useEffect(() => {
     const handleSongEnd = () => playNextSong();
     audioRef.current.addEventListener("ended", handleSongEnd);
-
     return () => audioRef.current.removeEventListener("ended", handleSongEnd);
-  }, []);
+  }, [currentIndex, isShuffle]);
 
+  //  Toggle play/pause
   const togglePlayPause = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -46,10 +57,11 @@ const MusicPlayer = ({ updateSong }) => {
     setIsPlaying(!isPlaying);
   };
 
+  // Track progress of the song
   useEffect(() => {
     const updateProgress = () => {
       setCurrentTime(audioRef.current.currentTime);
-      setDuration(audioRef.current.duration || 0);  //duration is a inbuilt property of audioRef
+      setDuration(audioRef.current.duration || 0);
     };
 
     audioRef.current.addEventListener("timeupdate", updateProgress);
@@ -61,32 +73,47 @@ const MusicPlayer = ({ updateSong }) => {
     };
   }, []);
 
+  //  Handle progress bar change
   const handleSliderChange = (e) => {
     const newTime = e.target.value;
     audioRef.current.currentTime = newTime;
     setCurrentTime(newTime);
   };
 
+  //  Toggle mute
   const volumeChange = () => {
     audioRef.current.muted = !isMute;
     setIsMute(!isMute);
   };
 
+  //  Play the next song
   const playNextSong = () => {
+    if (songs.length === 0) return;
+
+    let nextIndex;
     if (isShuffle) {
-      playRandomSong();
+      nextIndex = Math.floor(Math.random() * songs.length);
     } else {
-      console.log("Handle next song logic from parent or sibling.");
+      nextIndex = (currentIndex + 1) % songs.length;
     }
-    setIsPlaying(true);
+
+    setCurrentIndex(nextIndex);
+    playSong(songs[nextIndex]);
   };
 
-  const playRandomSong = () => {
-    console.log("Handle random song logic from parent or sibling.");
+  // Play the previous song
+  const playPreviousSong = () => {
+    if (songs.length === 0) return;
+
+    let prevIndex = (currentIndex - 1 + songs.length) % songs.length;
+    setCurrentIndex(prevIndex);
+    playSong(songs[prevIndex]);
   };
 
+  // Toggle shuffle
   const toggleShuffle = () => setIsShuffle(!isShuffle);
 
+  // Format time for display
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -98,11 +125,7 @@ const MusicPlayer = ({ updateSong }) => {
       <div className="song-info">
         {currentSong ? (
           <>
-            <img
-              src={currentSong.imageUrl}
-              alt={currentSong.title}
-              className="song-image"
-            />
+            <img src={currentSong.imageUrl} alt={currentSong.title} className="song-image" />
             <div className="song-details">
               <h3>{currentSong.songName}</h3>
               <p>{currentSong.artist}</p>
@@ -115,11 +138,8 @@ const MusicPlayer = ({ updateSong }) => {
 
       <div className="controls">
         <div className="player-controls">
-          <FaRandom
-            className={`icon_shuffle ${isShuffle ? "active" : ""}`}
-            onClick={toggleShuffle}
-          />
-          <MdSkipPrevious className="icon" onClick={() => console.log("Previous song")} />
+          <FaRandom className={`icon_shuffle ${isShuffle ? "active" : ""}`} onClick={toggleShuffle} />
+          <MdSkipPrevious className="icon" onClick={playPreviousSong} />
           <div onClick={togglePlayPause} className="play-pause">
             {isPlaying ? <FaPause /> : <FaPlay />}
           </div>

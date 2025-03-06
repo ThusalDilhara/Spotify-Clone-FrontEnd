@@ -161,6 +161,9 @@ hr {
   color: #fff;
   text-decoration: underline;
 }
+.error-message{
+  color: red;
+}
 
 .error-message-form-login{
   margin-bottom: 10px;

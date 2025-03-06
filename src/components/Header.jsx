@@ -15,6 +15,7 @@ const Header = ({updateSong}) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate=useNavigate();
   const { logout } = useAuth();
+  const userId = JSON.parse(localStorage.getItem('user')).userId;
 
 
   const handleLogout = () => {
@@ -35,6 +36,12 @@ const Header = ({updateSong}) => {
       if (!response.ok) {
         throw new Error("Failed to create Stripe session.");
       }
+
+      if(response.ok){
+        const response= await axios.put(`http://localhost:8080/api/users/updateSubscription/${userId}`);
+        console.log(response.data);
+      }
+        
   
       const { sessionUrl } = await response.json();
       window.location.href = sessionUrl;
@@ -164,9 +171,11 @@ const Header = ({updateSong}) => {
               <span>My Profile</span>
             </Link>
           </div>
-          <div className="menu_item">
+          <div className="menu_item"  onClick={handlePremiumClick}>
             <FaCrown className="menu_icon" />
+           
             <span>Upgrade to Premium</span>
+            
           </div>
           <div className="menu_item">
             <FaSignOutAlt className="menu_icon" />

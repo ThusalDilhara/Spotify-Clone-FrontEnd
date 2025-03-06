@@ -3,6 +3,8 @@ import "../styles/footer.css";
 import twitter from "../assets/footer/twitter.svg";
 import facebook from "../assets/footer/facebook.svg";
 import instagram from "../assets/footer/instagram.svg";
+import AboutUs from "./AboutUs";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
@@ -17,7 +19,10 @@ export const Footer = () => {
               Company
             </li>
 
-            <li>About</li>
+            <Link to="/aboutus">
+              <li>About</li>
+            </Link>
+
             <li>Jobs</li>
             <li>For the Record</li>
           </ul>
@@ -47,7 +52,10 @@ export const Footer = () => {
               Useful links
             </li>
 
+
+            <Link to="/support">
             <li>Support</li>
+            </Link>
             <li>Free Mobile App</li>
           </ul>
         </div>
