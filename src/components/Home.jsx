@@ -181,8 +181,6 @@ const Home = ({ updateSong }) => {
 
         <div className="space"></div>
         <Footer />
-        <Link to="/upload"><button>register artist</button></Link>
-        <Link to="/uploadSong"><button>upload song</button></Link>
         <div className="space"></div>
       </div>
     </>
