@@ -73,7 +73,7 @@ const LikedSongPage = ({updateSong}) => {
          <img src={likedSongImage} alt="LikedSong Image" className='header_img' />
           <div className='LikedSongPage_info'>
             <h2>Liked Songs</h2>
-            <h4>{data.userName} : {songs.length} Songs</h4>
+            <h4>{data.username} : {songs.length} Songs</h4>
           </div>
       </div>
       <div className='LikedSongPage_body'>
