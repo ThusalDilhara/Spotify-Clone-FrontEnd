@@ -8,7 +8,7 @@ const UploadSong = () => {
   const [imageFile, setImageFile] = useState(null);
   const [audioFile, setAudioFile] = useState(null);
   const [loading, setLoading] = useState(false);
-  const artistId = "67c709b13875f65edd2968c2";
+  const artistId = "67c88b75670ca6310dcd8993";
 
   const handleImageChange = (event) => {
     setImageFile(event.target.files[0]);
