@@ -21,8 +21,6 @@ import FollowedArtistPage from "./components/FollowedArtistPage";
 import ProtectedRoute from "./auth/protectedRoute";
 import Support from "./components/Support";
 import AboutUs from "./components/AboutUs";
-import ArtistImageUpload from "./test/uploadImage";
-import UploadSong from "./test/uploadSong";
 import PlaylistPage from "./components/PlaylistPage";
 import axios from "axios";
 
@@ -97,8 +95,8 @@ function App() {
           <Route path="/login" element={<LoginComponent />} />
           <Route path="/support" element={<Support />} />
           <Route path="/footer" element={<Footer />} />
-          <Route path="/upload" element={<ArtistImageUpload />} />
-          <Route path="/uploadSong" element={<UploadSong />} />
+          
+          
           <Route
             path="/profile"
             element={
