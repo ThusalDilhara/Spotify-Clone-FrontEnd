@@ -58,6 +58,16 @@ const Home = ({ updateSong }) => {
   });
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      console.log("Token Found :", token);
+    } else {
+      console.log("No Token Found ");
+    }
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
     axios
       .get("http://localhost:8080/api/songs/getdetails")
       .then((response) => setSongs(response.data))
