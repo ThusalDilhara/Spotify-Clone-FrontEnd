@@ -8,7 +8,7 @@
   background-color: var(--spotify-dark-gray);
   color: var(--spotify-white);
   border-radius: 10px;
-  
+  padding-left: 5px;
 }
 
 .playlist::-webkit-scrollbar {
@@ -32,7 +32,6 @@
 .playlist-info {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
   padding: 10px;
   background: linear-gradient(45deg, #1a1a2e, #16213e);
 }
@@ -46,12 +45,16 @@
 
 .playlist-stats h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: 70px;
 }
 
-.playlist-stats h3 {
+.playlist-stats .gray {
   margin: 5px 0;
   color: gray;
+}
+
+.playlist-songs{
+  padding-left: 10px;
 }
 
 .playlist-songs ul {
