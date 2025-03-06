@@ -4,22 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/authContext";
-import { ToastContainer, toast } from "react-toastify";
+import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaSpotify } from "react-icons/fa";
 
 function artistLogging() {
     const navigate = useNavigate(); 
-
     const [artistEmail, setArtistEmail] = useState("");
     const [artistPassword, setArtistPassword] = useState("");
     const { login } = useAuth();
     const [loginError, setLoginError] = useState("");
-
-  const handleNavigate = () => {
-    navigate("/artistDashboard");
-  };
-
 
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -28,56 +22,60 @@ function artistLogging() {
     return "";
   };
 
+  //display tost msg
+  const showToast = (message, backgroundColor, progressColor) => {
+        toast.success(message, {
+          icon: <FaSpotify size={40} color="white" />,
+          autoClose: 5000,
+          style: {
+            background: backgroundColor,
+            color: "white",
+            fontSize: "16px",
+            fontWeight: "bold",
+            padding: "12px 20px",
+            borderRadius: "8px",
+            "--toastify-color-progress-success": progressColor,
+          },
+        });
+      };
+  
+
   const handleArtistLogging = async (e) => {
-    e.preventDefault();
-  
-    if (!artistEmail || !artistPassword) {
-      setLoginError("Please enter both email and password.");
-      return;
-    }
-  
-    console.log("Sending request with:", { artistEmail, artistPassword });
-  
-    try {
-      const responseOfArtistLogging = await fetch("http://localhost:8080/api/artist/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ 
-          email: artistEmail,
-          password: artistPassword, }),
-      });
-  
-      if (!responseOfArtistLogging.ok) {
-        const errorData = await responseOfArtistLogging.json().catch(() => null);
-        setLoginError(errorData?.message || "Invalid credentials");
+      e.preventDefault();
+    
+      if (!artistEmail || !artistPassword) {
+        setLoginError("Please enter both email and password.");
         return;
       }
-  
-      const artist = await responseOfArtistLogging.json();
-      console.log("Login successful:", artist);
-      login(artist); 
-      localStorage.setItem("artist", JSON.stringify(artist));
-      navigate("/artistDashboard");
-      toast.success('Welcome to the Artist DashBoard..!', {
-                icon: <FaSpotify size={40} color="white" />,
-                autoClose: 5000, 
-                style: {
-                  background: "#1DB954",
-                  color: "white", 
-                  fontSize: "16px", 
-                  fontWeight: "bold",
-                  padding: "12px 20px",
-                  borderRadius: "8px",
-                },
-                progressStyle: { background: "white" },
-              });
-  
-    } catch (error) {
-      console.error("Login failed:", error);
-      setLoginError("Something went wrong. Please try again.");
-    }
+    
+      console.log("Sending request with:", { artistEmail, artistPassword });
+    
+        try {
+          const responseOfArtistLogging = await fetch("http://localhost:8080/api/artist/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ 
+              email: artistEmail,
+              password: artistPassword, }),
+          });
+      
+          if (!responseOfArtistLogging.ok) {
+            showToast("Inavlid Email or Password..!", "red", "white");
+            return;
+          }
+      
+          const artist = await responseOfArtistLogging.json();
+          console.log("Login successful:", artist);
+          login(artist); 
+          localStorage.setItem("artist", JSON.stringify(artist));
+          navigate("/artistDashboard");
+          showToast("Welcome to the Artist DashBoard..!", "#1DB954", "white");
+      
+        } catch (error) {
+          showToast("Backend Error..!", "red", "white");
+        }
   };
   
   
