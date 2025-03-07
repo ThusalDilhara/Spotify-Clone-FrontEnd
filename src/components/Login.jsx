@@ -23,37 +23,6 @@ const LoginComponent = () => {
     return "";
   };
 
-  //   try {
-  //     const response = await fetch("http://localhost:8080/api/users/login", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ email, password }),
-  //     });
-
-  //     if (!response.ok) {
-  //       const errorData = await response.json();
-  //       setLoginError(errorData.message || "Invalid credentials");
-  //       return;
-  //     }
-
-  //     const { token } = await response.json(); // Assuming the backend sends the token
-  //     console.log("Login successful:", token);
-
-  //     // Save token to localStorage
-  //     localStorage.setItem("token", token);
-
-  //     // Optionally, you can save the token in a global context or state
-  //     login({ token });
-
-  //     // Navigate to the home page
-  //     navigate("/home");
-  //   } catch (error) {
-  //     console.error("Login failed:", error);
-  //     setLoginError("Something went wrong. Please try again.");
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -75,35 +44,27 @@ const LoginComponent = () => {
         body: JSON.stringify({ email, password }),
       });
 
-      // If response is empty or not JSON, handle it gracefully
       if (!response.ok) {
-        const errorData = await response
-          .json()
-          .catch(() => ({ message: "Invalid credentials" }));
+        const errorData = await response.json();
         setLoginError(errorData.message || "Invalid credentials");
         return;
       }
 
-      // Check if the response is empty or invalid JSON
-      const data = await response.json().catch(() => {
-        setLoginError("Unexpected server response.");
-        return null; // Avoid proceeding if JSON is invalid
-      });
+      const responseData = await response.json();
+      console.log("Login successful:", responseData);
 
-      if (data && data.token) {
-        const { token } = data; // Get the token from the response
-        console.log("Login successful:", token);
+      // Extract token and user separately
+      const { token, user } = responseData;
 
-        // Save token to localStorage
-        localStorage.setItem("token", token);
+      // Store user and token in localStorage
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
 
-        // Optionally, save the token in context or global state
-        login({ token });
+      // Call login function with user data
+      login(user);
 
-        // Navigate to the home page
-        console.log("Navigating to /home...");
-        navigate("/home");
-      }
+      // Navigate to the home page
+      navigate("/home");
     } catch (error) {
       console.error("Login failed:", error);
       setLoginError("Something went wrong. Please try again.");
