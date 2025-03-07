@@ -4,7 +4,6 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/authContext";
 
-
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,34 +43,33 @@ const LoginComponent = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-    
+
       if (!response.ok) {
         const errorData = await response.json();
         setLoginError(errorData.message || "Invalid credentials");
         return;
       }
-    
+
       const responseData = await response.json();
       console.log("Login successful:", responseData);
-    
+
       // Extract token and user separately
       const { token, user } = responseData;
-    
+
       // Store user and token in localStorage
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
-    
+
       // Call login function with user data
       login(user);
-    
+
       // Navigate to the home page
       navigate("/home");
     } catch (error) {
       console.error("Login failed:", error);
       setLoginError("Something went wrong. Please try again.");
     }
-  }
-    
+  };
 
   return (
     <div className="login-container">
