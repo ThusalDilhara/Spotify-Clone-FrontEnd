@@ -37,7 +37,7 @@ const Home = ({ updateSong }) => {
         .then((response) => {
           if (response.data.length > 6) {
             const shuffledSongs = response.data.sort(() => 0.5 - Math.random());
-            setSongs(shuffledSongs.slice(0, 6));
+            setSongs(shuffledSongs.slice(0, 10));
           } else {
             setSongs(response.data);
           }
@@ -57,7 +57,7 @@ const Home = ({ updateSong }) => {
       .then((response) => {
         if (response.data.length > 4) {
           const shuffledArtist = response.data.sort(() => 0.5 - Math.random());
-          setArtists(shuffledArtist.slice(0, 5));
+          setArtists(shuffledArtist.slice(0, 6));
         } else {
           setArtists(response.data);
         }
