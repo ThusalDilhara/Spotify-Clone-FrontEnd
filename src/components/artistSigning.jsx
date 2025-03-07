@@ -37,9 +37,19 @@ function ArtistSigning() {
     });
   };
 
+  //validate email
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!email) return "Email is required.";
+    if (!emailRegex.test(email)) return "Enter a valid email address.";
+    return "";
+  };
+
   // Handle artist sign-in
   const handleArtistSigning = async (e) => {
     e.preventDefault();
+
+    
 
     if (password !== confirmPassword) {
       showToast("Passwords do not match!", "red", "white");

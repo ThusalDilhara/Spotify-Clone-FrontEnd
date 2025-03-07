@@ -115,6 +115,7 @@ const SignupPage = () => {
 
   return (
     <div className="signup-container">
+      <button className="artistLoggingButton" onClick={() => navigate("/artistSigning")}>SignUp As Artist</button>
       <div className="signup-box">
         <div className="logo">
           <img

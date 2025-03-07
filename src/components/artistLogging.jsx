@@ -17,7 +17,7 @@ function artistLogging() {
 
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (!email) return "Email is required.";
+    if (!email) return "Email is required..!";
     if (!emailRegex.test(email)) return "Enter a valid email address.";
     return "";
   };
@@ -42,14 +42,17 @@ function artistLogging() {
 
   const handleArtistLogging = async (e) => {
       e.preventDefault();
+
+      const emailError = validateEmail(artistEmail);
     
       if (!artistEmail || !artistPassword) {
         setLoginError("Please enter both email and password.");
         return;
       }
-    
+      
       console.log("Sending request with:", { artistEmail, artistPassword });
-    
+
+      if(emailError==""){
         try {
           const responseOfArtistLogging = await fetch("http://localhost:8080/api/artist/login", {
             method: "POST",
@@ -60,12 +63,10 @@ function artistLogging() {
               email: artistEmail,
               password: artistPassword, }),
           });
-      
           if (!responseOfArtistLogging.ok) {
             showToast("Inavlid Email or Password..!", "red", "white");
             return;
           }
-      
           const artist = await responseOfArtistLogging.json();
           console.log("Login successful:", artist);
           login(artist); 
@@ -73,9 +74,13 @@ function artistLogging() {
           navigate("/artistDashboard");
           showToast("Welcome to the Artist DashBoard..!", "#1DB954", "white");
       
-        } catch (error) {
-          showToast("Backend Error..!", "red", "white");
-        }
+      } catch (error) {
+        showToast("Backend Error..!", "red", "white");
+      }
+      }else{
+        showToast(`${emailError}`, "red", "white");
+      }
+        
   };
   
   
